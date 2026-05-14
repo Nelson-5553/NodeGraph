@@ -1,7 +1,65 @@
 ---
 import Layout from '../Layouts/Layout.astro';
+import NodeGraph from '../components/NodeGraph';
+
+const nodes = [
+  { id: "Settings",          group: 0 },
+  { id: "Plugins",           group: 0 },
+  { id: "Core plugins",      group: 0 },
+  { id: "Community plugins", group: 0 },
+  { id: "Themes",            group: 0 },
+  { id: "Hotkeys",           group: 0 },
+  { id: "Editor",            group: 1 },
+  { id: "Graph view",        group: 1 },
+  { id: "Canvas",            group: 1 },
+  { id: "Backlinks",         group: 1 },
+  { id: "Obsidian Sync",     group: 2 },
+  { id: "Obsidian Publish",  group: 2 },
+  { id: "Daily notes",       group: 3 },
+  { id: "Templates",         group: 3 },
+  { id: "Tags",              group: 3 },
+  { id: "File explorer",     group: 3 },
+  { id: "Bookmarks",         group: 3 },
+  { id: "Callouts",          group: 4 },
+  { id: "Internal links",    group: 4 },
+  { id: "Basic formatting",  group: 4 },
+];
+ 
+const links = [
+  ["Settings",     "Plugins"],
+  ["Settings",     "Hotkeys"],
+  ["Settings",     "Editor"],
+  ["Plugins",      "Core plugins"],
+  ["Plugins",      "Community plugins"],
+  ["Plugins",      "Themes"],
+  ["Core plugins", "Daily notes"],
+  ["Core plugins", "Templates"],
+  ["Core plugins", "Graph view"],
+  ["Core plugins", "Backlinks"],
+  ["Core plugins", "Canvas"],
+  ["Core plugins", "File explorer"],
+  ["Core plugins", "Bookmarks"],
+  ["Graph view",   "Backlinks"],
+  ["Tags",         "Backlinks"],
+  ["Internal links","Backlinks"],
+  ["Internal links","Callouts"],
+  ["Basic formatting","Callouts"],
+  ["Basic formatting","Internal links"],
+  ["Obsidian Sync","Obsidian Publish"],
+  ["Daily notes",  "Templates"],
+];
 ---
 
 <Layout>
-	
+	<NodeGraph
+  		nodes={nodes as any}
+  		links={links as any}
+        backgroundColor="#0a0f1e"
+        viewGuide={false}
+        height={300}
+        repulsion={80}
+        colors={["#38bdf8","#818cf8","#34d399","#fb7185","#fbbf24"]}
+		client:only
+      />
 </Layout>
+
