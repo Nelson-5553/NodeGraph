@@ -29,6 +29,7 @@ export default function NodeGraph({
   backgroundColor = "#0d0d0d",
   viewGuide = true,
   colors = DEFAULT_COLORS,
+  width = 800,
   height = 580,
   repulsion = 120,
   linkDistance = 55,
@@ -307,7 +308,7 @@ export default function NodeGraph({
       ref={containerRef}
       style={{
         position: "relative",
-        width: "100%",
+        width: `${width}px`,
         height: `${height}px`,
         background: backgroundColor,
         borderRadius: "12px",
