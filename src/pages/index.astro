@@ -3,36 +3,107 @@ import Layout from '../Layouts/Layout.astro';
 import NodeGraph from '../components/NodeGraph';
 
 const nodes = [
-  { id: "Settings",          group: 0 },
-  { id: "Plugins",           group: 0 },
-  { id: "Core plugins",      group: 0 },
+  // Grupo 0 - Configuración y plugins
+  { id: "Settings", group: 0 },
+  { id: "Plugins", group: 0 },
+  { id: "Core plugins", group: 0 },
   { id: "Community plugins", group: 0 },
-  { id: "Themes",            group: 0 },
-  { id: "Hotkeys",           group: 0 },
-  { id: "Editor",            group: 1 },
-  { id: "Graph view",        group: 1 },
-  { id: "Canvas",            group: 1 },
-  { id: "Backlinks",         group: 1 },
-  { id: "Obsidian Sync",     group: 2 },
-  { id: "Obsidian Publish",  group: 2 },
-  { id: "Daily notes",       group: 3 },
-  { id: "Templates",         group: 3 },
-  { id: "Tags",              group: 3 },
-  { id: "File explorer",     group: 3 },
-  { id: "Bookmarks",         group: 3 },
-  { id: "Callouts",          group: 4 },
-  { id: "Internal links",    group: 4 },
-  { id: "Basic formatting",  group: 4 },
-  { id: "Console",  group: 5 },
+  { id: "Themes", group: 0 },
+  { id: "Hotkeys", group: 0 },
+  { id: "Appearance", group: 0 },
+  { id: "Workspace", group: 0 },
+  { id: "Command palette", group: 0 },
+  { id: "Ribbon menu", group: 0 },
+
+  // Grupo 1 - Editor y visualización
+  { id: "Editor", group: 1 },
+  { id: "Graph view", group: 1 },
+  { id: "Canvas", group: 1 },
+  { id: "Backlinks", group: 1 },
+  { id: "Outline", group: 1 },
+  { id: "Search", group: 1 },
+  { id: "Split view", group: 1 },
+  { id: "Tabs", group: 1 },
+  { id: "Properties", group: 1 },
+  { id: "Hover preview", group: 1 },
+
+  // Grupo 2 - Sync y publicación
+  { id: "Obsidian Sync", group: 2 },
+  { id: "Obsidian Publish", group: 2 },
+  { id: "Remote vault", group: 2 },
+  { id: "Cloud backup", group: 2 },
+  { id: "Version history", group: 2 },
+  { id: "Encrypted sync", group: 2 },
+
+  // Grupo 3 - Organización de notas
+  { id: "Daily notes", group: 3 },
+  { id: "Templates", group: 3 },
+  { id: "Tags", group: 3 },
+  { id: "File explorer", group: 3 },
+  { id: "Bookmarks", group: 3 },
+  { id: "Folders", group: 3 },
+  { id: "Attachments", group: 3 },
+  { id: "Kanban", group: 3 },
+  { id: "Metadata", group: 3 },
+  { id: "Aliases", group: 3 },
+
+  // Grupo 4 - Markdown y enlaces
+  { id: "Callouts", group: 4 },
+  { id: "Internal links", group: 4 },
+  { id: "Basic formatting", group: 4 },
+  { id: "Markdown", group: 4 },
+  { id: "Embeds", group: 4 },
+  { id: "Code blocks", group: 4 },
+  { id: "Tables", group: 4 },
+  { id: "Footnotes", group: 4 },
+  { id: "MathJax", group: 4 },
+  { id: "Block references", group: 4 },
+
+  // Grupo 5 - Consola y desarrollo
+  { id: "Console", group: 5 },
+  { id: "Developer tools", group: 5 },
+  { id: "API", group: 5 },
+  { id: "Dataview", group: 5 },
+  { id: "Templater plugin", group: 5 },
+  { id: "Automation", group: 5 },
+  { id: "Scripts", group: 5 },
+  { id: "JSON export", group: 5 },
+  { id: "CLI", group: 5 },
+  { id: "Custom CSS", group: 5 },
+
+  // Grupo 6 - Productividad y conocimiento
+  { id: "Knowledge base", group: 6 },
+  { id: "Second brain", group: 6 },
+  { id: "Task management", group: 6 },
+  { id: "Meeting notes", group: 6 },
+  { id: "Research", group: 6 },
+  { id: "Zettelkasten", group: 6 },
+  { id: "PARA method", group: 6 },
+  { id: "Mind maps", group: 6 },
+  { id: "Reading notes", group: 6 },
+  { id: "Project notes", group: 6 },
 ];
- 
+
 const links = [
-  ["Settings",     "Plugins"],
-  ["Settings",     "Hotkeys"],
-  ["Settings",     "Editor"],
-  ["Plugins",      "Core plugins"],
-  ["Plugins",      "Community plugins"],
-  ["Plugins",      "Themes"],
+  // Configuración principal
+  ["Settings", "Plugins"],
+  ["Settings", "Hotkeys"],
+  ["Settings", "Editor"],
+  ["Settings", "Appearance"],
+  ["Settings", "Workspace"],
+  ["Settings", "Command palette"],
+  ["Settings", "Ribbon menu"],
+  ["Settings", "Themes"],
+
+  // Plugins
+  ["Plugins", "Core plugins"],
+  ["Plugins", "Community plugins"],
+  ["Plugins", "Themes"],
+  ["Plugins", "Dataview"],
+  ["Plugins", "Templater plugin"],
+  ["Plugins", "Automation"],
+
+  // Core plugins
   ["Core plugins", "Daily notes"],
   ["Core plugins", "Templates"],
   ["Core plugins", "Graph view"],
@@ -40,31 +111,122 @@ const links = [
   ["Core plugins", "Canvas"],
   ["Core plugins", "File explorer"],
   ["Core plugins", "Bookmarks"],
-  ["Graph view",   "Backlinks"],
-  ["Tags",         "Backlinks"],
-  ["Tags",         "Console"],
-  ["Internal links","Backlinks"],
-  ["Internal links","Callouts"],
-  ["Basic formatting","Callouts"],
-  ["Basic formatting","Internal links"],
-  ["Obsidian Sync","Obsidian Publish"],
-  ["Daily notes",  "Templates"],
-  ["Obsidian Sync",  "Templates"],
+  ["Core plugins", "Outline"],
+  ["Core plugins", "Search"],
+
+  // Editor y vistas
+  ["Editor", "Tabs"],
+  ["Editor", "Split view"],
+  ["Editor", "Hover preview"],
+  ["Editor", "Properties"],
+  ["Editor", "Markdown"],
+  ["Editor", "Code blocks"],
+
+  // Graph y backlinks
+  ["Graph view", "Backlinks"],
+  ["Graph view", "Tags"],
+  ["Graph view", "Internal links"],
+  ["Graph view", "Knowledge base"],
+  ["Backlinks", "Internal links"],
+  ["Backlinks", "Block references"],
+
+  // Canvas y mapas
+  ["Canvas", "Mind maps"],
+  ["Canvas", "Research"],
+  ["Canvas", "Project notes"],
+
+  // Organización
+  ["Daily notes", "Templates"],
+  ["Daily notes", "Task management"],
+  ["Daily notes", "Meeting notes"],
+  ["Templates", "Templater plugin"],
+  ["Templates", "Metadata"],
+  ["File explorer", "Folders"],
+  ["File explorer", "Attachments"],
+  ["Bookmarks", "Research"],
+
+  // Tags y metadata
+  ["Tags", "Metadata"],
+  ["Tags", "Aliases"],
+  ["Tags", "Search"],
+  ["Tags", "Console"],
+  ["Metadata", "Dataview"],
+
+  // Markdown
+  ["Markdown", "Basic formatting"],
+  ["Markdown", "Tables"],
+  ["Markdown", "Footnotes"],
+  ["Markdown", "Embeds"],
+  ["Markdown", "MathJax"],
+  ["Basic formatting", "Callouts"],
+  ["Basic formatting", "Internal links"],
+  ["Internal links", "Callouts"],
+  ["Internal links", "Embeds"],
+  ["Internal links", "Block references"],
+  ["Code blocks", "Developer tools"],
+
+  // Sync y nube
+  ["Obsidian Sync", "Obsidian Publish"],
+  ["Obsidian Sync", "Remote vault"],
+  ["Obsidian Sync", "Cloud backup"],
+  ["Obsidian Sync", "Encrypted sync"],
+  ["Cloud backup", "Version history"],
+  ["Remote vault", "Version history"],
+  ["Obsidian Publish", "Knowledge base"],
+
+  // Desarrollo
+  ["Console", "Developer tools"],
+  ["Console", "API"],
+  ["API", "Dataview"],
+  ["Automation", "Scripts"],
+  ["Scripts", "CLI"],
+  ["Custom CSS", "Themes"],
+  ["JSON export", "API"],
+
+  // Productividad
+  ["Knowledge base", "Second brain"],
+  ["Second brain", "Zettelkasten"],
+  ["Second brain", "PARA method"],
+  ["Research", "Reading notes"],
+  ["Research", "Project notes"],
+  ["Task management", "Kanban"],
+  ["Meeting notes", "Project notes"],
+  ["Zettelkasten", "Internal links"],
+
+  // Relaciones cruzadas
+  ["Dataview", "Metadata"],
+  ["Dataview", "Tables"],
+  ["Search", "Tags"],
+  ["Search", "Aliases"],
+  ["Hover preview", "Internal links"],
+  ["Properties", "Metadata"],
+  ["Command palette", "Hotkeys"],
+  ["Workspace", "Tabs"],
+  ["Workspace", "Split view"],
+  ["Themes", "Custom CSS"],
+  ["Kanban", "Task management"],
+  ["Project notes", "Knowledge base"],
+  ["Version history", "Reading notes"],
+  ["Obsidian Publish", "Reading notes"],
 ];
 ---
 
 <Layout>
   <div class="flex justify-center items-center mt-5"> 
     <NodeGraph
-    className='rounded-3xl shadow-lg bg-neutral-950'
-    nodes={nodes as any}
-    links={links as any}
-    viewGuide={false}
-    height={600}
-    width={600}
-    repulsion={60}
-    colors={["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#98D8C8", "#FFD700"]}
-    client:only
+      className='rounded-3xl shadow-lg bg-neutral-950'
+      nodes={nodes as any}
+      links={links as any}
+      viewGuide={false}
+      height={600}
+      width={1200}
+      repulsion={40}
+      colors={["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#98D8C8", "#FFD700"]}
+      linkColor="rgba(255,255,255,0.45)"
+      linkWidth={0.6}
+      linkHoverColor="#ff6b6b"
+      linkHoverWidth={1.2}
+      client:only
     />
   </div>
 </Layout>

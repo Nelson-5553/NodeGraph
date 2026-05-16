@@ -156,7 +156,7 @@ export default function NodeGraph({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden cursor-grab ${className}`}
+      className={`relative overflow-hidden cursor-grab bg-amber-600 ${className}`}
       style={{
         width: `${width}px`,
         height: `${height}px`,
