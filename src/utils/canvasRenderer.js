@@ -69,11 +69,12 @@ function drawNodeGlow(ctx, sx, sy, r, color, dpr) {
  * @param {string} color - Color del nodo
  * @param {boolean} isHovered - Si el nodo está en hover
  * @param {number} dpr - Device pixel ratio
+ * @param {string} nodeHoverColor - Color del nodo cuando está en hover
  */
-function drawNode(ctx, node, sx, sy, r, color, isHovered, dpr) {
+function drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor = "#fff") {
   ctx.beginPath();
   ctx.arc(sx, sy, r, 0, Math.PI * 2);
-  ctx.fillStyle = isHovered ? "#fff" : color;
+  ctx.fillStyle = isHovered ? nodeHoverColor : color;
   ctx.globalAlpha = isHovered ? 1 : 0.82;
   ctx.fill();
   ctx.globalAlpha = 1;
@@ -110,8 +111,9 @@ function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr) {
  * @param {Object} viewState - Estado de vista
  * @param {Array} colors - Paleta de colores
  * @param {number} dpr - Device pixel ratio
+ * @param {string} nodeHoverColor - Color del nodo cuando está en hover
  */
-function drawNodes(ctx, nodes, links, viewState, colors, dpr) {
+function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "#fff") {
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
   
   nodes.forEach(node => {
@@ -126,7 +128,7 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr) {
       drawNodeGlow(ctx, sx, sy, r, color, dpr);
     }
     
-    drawNode(ctx, node, sx, sy, r, color, isHovered, dpr);
+    drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor);
     
     const degree = getDegree(node.id, links);
     drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr);
@@ -140,7 +142,7 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr) {
  * @param {Array} links - Array de enlaces
  * @param {Object} viewState - Estado de vista
  * @param {Array} colors - Paleta de colores
- * @param {Object} linkStyles - Estilos de los enlaces (linkColor, linkWidth, linkHoverColor, linkHoverWidth)
+ * @param {Object} linkStyles - Estilos de los enlaces y nodos (linkColor, linkWidth, linkHoverColor, linkHoverWidth, nodeHoverColor)
  */
 export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   if (!canvas) return;
@@ -149,12 +151,13 @@ export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   const dpr = window.devicePixelRatio || 1;
   const W = canvas.width;
   const H = canvas.height;
+  const { nodeHoverColor = "#fff" } = linkStyles;
   
   ctx.clearRect(0, 0, W, H);
   ctx.save();
   
   drawLinks(ctx, links, viewState, dpr, linkStyles);
-  drawNodes(ctx, nodes, links, viewState, colors, dpr);
+  drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor);
   
   ctx.restore();
 }

@@ -31,6 +31,7 @@ export default function NodeGraph({
   linkWidth = 0.6,
   linkHoverColor = "#ff0000",
   linkHoverWidth = 1.2,
+  nodeHoverColor = "#fff",
 }) {
   const containerRef = useRef(null);
   const canvasRef    = useRef(null);
@@ -63,8 +64,9 @@ export default function NodeGraph({
       linkWidth,
       linkHoverColor,
       linkHoverWidth,
+      nodeHoverColor,
     });
-  }, [colors, linkColor, linkWidth, linkHoverColor, linkHoverWidth]);
+  }, [colors, linkColor, linkWidth, linkHoverColor, linkHoverWidth, nodeHoverColor]);
 
   // ── Construir / reconstruir simulación ─────────────────────────────────
   const buildSim = useCallback((nodes, links, rep, ls) => {
