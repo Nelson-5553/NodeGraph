@@ -20,13 +20,13 @@ const DEFAULT_COLORS = [
 export default function NodeGraph({
   nodes: rawNodes = [],
   links: rawLinks = [],
-  backgroundColor = "#0d0d0d",
   viewGuide = true,
   colors = DEFAULT_COLORS,
   width = 800,
   height = 580,
   repulsion = 120,
   linkDistance = 55,
+  className = "",
 }) {
   const containerRef = useRef(null);
   const canvasRef    = useRef(null);
@@ -147,14 +147,10 @@ export default function NodeGraph({
   return (
     <div
       ref={containerRef}
+      className={`relative overflow-hidden cursor-grab ${className}`}
       style={{
-        position: "relative",
         width: `${width}px`,
         height: `${height}px`,
-        background: backgroundColor,
-        borderRadius: "12px",
-        overflow: "hidden",
-        cursor: "grab",
       }}
     >
       <canvas

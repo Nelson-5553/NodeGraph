@@ -23,6 +23,7 @@ const nodes = [
   { id: "Callouts",          group: 4 },
   { id: "Internal links",    group: 4 },
   { id: "Basic formatting",  group: 4 },
+  { id: "Console",  group: 5 },
 ];
  
 const links = [
@@ -41,25 +42,30 @@ const links = [
   ["Core plugins", "Bookmarks"],
   ["Graph view",   "Backlinks"],
   ["Tags",         "Backlinks"],
+  ["Tags",         "Console"],
   ["Internal links","Backlinks"],
   ["Internal links","Callouts"],
   ["Basic formatting","Callouts"],
   ["Basic formatting","Internal links"],
   ["Obsidian Sync","Obsidian Publish"],
   ["Daily notes",  "Templates"],
+  ["Obsidian Sync",  "Templates"],
 ];
 ---
 
 <Layout>
-	<NodeGraph
-  		nodes={nodes as any}
-  		links={links as any}
-        backgroundColor="#0a0f1e"
-        viewGuide={false}
-        height={300}
-        repulsion={80}
-        colors={["#38bdf8","#818cf8","#34d399","#fb7185","#fbbf24"]}
-		client:only
-      />
+  <div class="flex justify-center items-center mt-5"> 
+    <NodeGraph
+    className='rounded-3xl shadow-lg bg-neutral-950'
+    nodes={nodes as any}
+    links={links as any}
+    viewGuide={false}
+    height={600}
+    width={600}
+    repulsion={60}
+    colors={["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#98D8C8", "#FFD700"]}
+    client:only
+    />
+  </div>
 </Layout>
 
