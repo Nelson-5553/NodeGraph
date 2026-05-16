@@ -11,9 +11,16 @@ import { getDegree, nodeRadius } from './nodeUtils';
  * @param {Array} links - Array de enlaces
  * @param {Object} viewState - Estado de vista (scale, offsetX, offsetY, hoveredNode)
  * @param {number} dpr - Device pixel ratio
+ * @param {Object} linkStyles - Estilos de los enlaces
  */
-function drawLinks(ctx, links, viewState, dpr) {
+function drawLinks(ctx, links, viewState, dpr, linkStyles = {}) {
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
+  const {
+    linkColor = "rgba(255,255,255,0.07)",
+    linkWidth = 0.6,
+    linkHoverColor = "rgba(255,255,255,0.45)",
+    linkHoverWidth = 1.2,
+  } = linkStyles;
   
   links.forEach(l => {
     if (!l.source?.x) return;
@@ -27,8 +34,8 @@ function drawLinks(ctx, links, viewState, dpr) {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
-    ctx.strokeStyle = isHovered ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.07)";
-    ctx.lineWidth = (isHovered ? 1.2 : 0.6) * dpr;
+    ctx.strokeStyle = isHovered ? linkHoverColor : linkColor;
+    ctx.lineWidth = (isHovered ? linkHoverWidth : linkWidth) * dpr;
     ctx.stroke();
   });
 }
@@ -133,8 +140,9 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr) {
  * @param {Array} links - Array de enlaces
  * @param {Object} viewState - Estado de vista
  * @param {Array} colors - Paleta de colores
+ * @param {Object} linkStyles - Estilos de los enlaces (linkColor, linkWidth, linkHoverColor, linkHoverWidth)
  */
-export function draw(canvas, nodes, links, viewState, colors) {
+export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   if (!canvas) return;
   
   const ctx = canvas.getContext("2d");
@@ -145,7 +153,7 @@ export function draw(canvas, nodes, links, viewState, colors) {
   ctx.clearRect(0, 0, W, H);
   ctx.save();
   
-  drawLinks(ctx, links, viewState, dpr);
+  drawLinks(ctx, links, viewState, dpr, linkStyles);
   drawNodes(ctx, nodes, links, viewState, colors, dpr);
   
   ctx.restore();

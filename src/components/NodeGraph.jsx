@@ -27,6 +27,10 @@ export default function NodeGraph({
   repulsion = 120,
   linkDistance = 55,
   className = "",
+  linkColor = "rgba(255,255,255,0.45)",
+  linkWidth = 0.6,
+  linkHoverColor = "#ff0000",
+  linkHoverWidth = 1.2,
 }) {
   const containerRef = useRef(null);
   const canvasRef    = useRef(null);
@@ -54,8 +58,13 @@ export default function NodeGraph({
       hoveredNode,
     };
     
-    draw(canvas, nodes, links, viewState, colors);
-  }, [colors]);
+    draw(canvas, nodes, links, viewState, colors, {
+      linkColor,
+      linkWidth,
+      linkHoverColor,
+      linkHoverWidth,
+    });
+  }, [colors, linkColor, linkWidth, linkHoverColor, linkHoverWidth]);
 
   // ── Construir / reconstruir simulación ─────────────────────────────────
   const buildSim = useCallback((nodes, links, rep, ls) => {
