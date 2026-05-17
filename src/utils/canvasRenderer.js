@@ -91,12 +91,36 @@ function drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor = 
  * @param {boolean} isHovered - Si el nodo está en hover
  * @param {number} scale - Factor de escala actual
  * @param {number} dpr - Device pixel ratio
+ * @param {Object} labelOptions - Opciones de personalización del label
  */
-function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr) {
-  if (isHovered || (degree >= 5 && scale > 0.55)) {
-    const fs = Math.round(10 * scale * dpr);
+function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labelOptions = {}) {
+  const {
+    color = "rgba(220,215,205,0.9)",
+    hoverColor = "#fff",
+    fontSize = 10,
+    showOnHover = false,
+    minDegreeToShow = 5,
+    minScaleToShow = 0.55,
+  } = labelOptions;
+
+  // Determinar si mostrar el label basado en la configuración
+  let shouldShowLabel = false;
+
+  if (isHovered) {
+    // Siempre mostrar en hover
+    shouldShowLabel = true;
+  } else if (showOnHover) {
+    // Si showOnHover es true, NO mostrar el label cuando no hay hover
+    shouldShowLabel = false;
+  } else {
+    // Mostrar si tiene suficientes conexiones y escala mínima
+    shouldShowLabel = degree >= minDegreeToShow && scale > minScaleToShow;
+  }
+
+  if (shouldShowLabel) {
+    const fs = Math.round(fontSize * scale * dpr);
     ctx.font = `${fs}px sans-serif`;
-    ctx.fillStyle = isHovered ? "#fff" : "rgba(220,215,205,0.9)";
+    ctx.fillStyle = isHovered ? hoverColor : color;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(node.id, sx, sy + r + 9 * scale * dpr);
@@ -112,8 +136,9 @@ function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr) {
  * @param {Array} colors - Paleta de colores
  * @param {number} dpr - Device pixel ratio
  * @param {string} nodeHoverColor - Color del nodo cuando está en hover
+ * @param {Object} labelOptions - Opciones de personalización del label
  */
-function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "#fff") {
+function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "#fff", labelOptions = {}) {
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
   
   nodes.forEach(node => {
@@ -131,7 +156,7 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "
     drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor);
     
     const degree = getDegree(node.id, links);
-    drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr);
+    drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labelOptions);
   });
 }
 
@@ -142,7 +167,7 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "
  * @param {Array} links - Array de enlaces
  * @param {Object} viewState - Estado de vista
  * @param {Array} colors - Paleta de colores
- * @param {Object} linkStyles - Estilos de los enlaces y nodos (linkColor, linkWidth, linkHoverColor, linkHoverWidth, nodeHoverColor)
+ * @param {Object} linkStyles - Estilos de los enlaces, nodos y labels
  */
 export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   if (!canvas) return;
@@ -153,11 +178,20 @@ export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   const H = canvas.height;
   const { nodeHoverColor = "#fff" } = linkStyles;
   
+  const labelOptions = {
+    color: linkStyles.nodeLabelColor,
+    hoverColor: linkStyles.nodeLabelHoverColor,
+    fontSize: linkStyles.nodeLabelFontSize,
+    showOnHover: linkStyles.nodeLabelShowOnHover,
+    minDegreeToShow: linkStyles.nodeLabelMinDegree,
+    minScaleToShow: linkStyles.nodeLabelMinScale,
+  };
+  
   ctx.clearRect(0, 0, W, H);
   ctx.save();
   
   drawLinks(ctx, links, viewState, dpr, linkStyles);
-  drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor);
+  drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor, labelOptions);
   
   ctx.restore();
 }

@@ -1,6 +1,6 @@
 ---
-import Layout from '../Layouts/Layout.astro';
-import NodeGraph from '../components/NodeGraph';
+import Layout from "../Layouts/Layout.astro";
+import NodeGraph from "../components/NodeGraph";
 
 const nodes = [
   // Grupo 0 - Configuración y plugins
@@ -212,23 +212,69 @@ const links = [
 ---
 
 <Layout>
-  <div class="flex justify-center items-center mt-5"> 
+  <div class="flex flex-col justify-center items-center mt-5 space-y-6">
     <NodeGraph
-      className='rounded-3xl shadow-lg bg-neutral-950'
-      nodes={nodes as any}
-      links={links as any}
-      viewGuide={false}
-      height={600}
-      width={1200}
-      repulsion={40}
-      colors={["#FF6B6B","#4ECDC4","#45B7D1","#FFA07A","#98D8C8", "#FFD700"]}
-      linkColor="rgba(255,255,255,0.45)"
-      linkWidth={0.6}
-      linkHoverColor="#ff6b6b"
-      nodeHoverColor='#ff6b6b'
-      linkHoverWidth={1.2}
-      client:only
-    />
+  className="rounded-3xl shadow-2xl bg-neutral-950 border border-neutral-800"
+  nodes={nodes}
+  links={links}
+  viewGuide={false}
+  height={600}
+  width={1200}
+  repulsion={90}
+  colors={[
+    "#61DAFB", // cyan
+    "#A78BFA", // violeta
+    "#34D399", // verde
+    "#F472B6", // rosa
+    "#FBBF24", // amber
+    "#FB7185", // coral
+    "#38BDF8", // azul
+    "#C084FC", // púrpura
+  ]}
+  linkColor="rgba(255,255,255,0.15)"
+  linkHoverColor="#FFFFFF"
+  nodeHoverColor="#FFFFFF"
+  linkWidth={0.6}
+  linkHoverWidth={1.4}
+  nodeLabelColor="#D1D5DB"
+  nodeLabelHoverColor="#FFFFFF"
+  nodeLabelFontSize={12}
+  nodeLabelShowOnHover={false}
+  nodeLabelMinDegree={5}
+  nodeLabelMinScale={0.25}
+  client:only
+/>
+
+   <NodeGraph
+  className="rounded-3xl shadow-xl bg-white border border-neutral-400 mt-5"
+  nodes={nodes}
+  links={links}
+  viewGuide={false}
+  height={600}
+  width={1200}
+  repulsion={90}
+  colors={[
+    "#2563EB", // azul
+    "#7C3AED", // violeta
+    "#059669", // verde
+    "#DB2777", // rosa
+    "#D97706", // naranja
+    "#DC2626", // rojo
+    "#0891B2", // cyan
+    "#9333EA", // púrpura
+  ]}
+  linkColor="rgba(66,71,97,0.5)"
+  linkHoverColor="#111827"
+  nodeHoverColor="#111827"
+  linkWidth={0.7}
+  linkHoverWidth={1.5}
+  nodeLabelColor="#111827"
+  nodeLabelHoverColor="#111827"
+  nodeLabelFontSize={12}
+  nodeLabelShowOnHover={false}
+  nodeLabelMinDegree={5}
+  nodeLabelMinScale={0.25}
+  client:only
+/>
   </div>
 </Layout>
-

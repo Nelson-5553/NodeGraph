@@ -6,7 +6,6 @@ export function NodeGraphControls({
   setRepulsionVal,
   linkStrengthVal,
   setLinkStrengthVal,
-  onRestart,
 }) {
   return (
     <>
@@ -61,21 +60,6 @@ export function NodeGraphControls({
             onChange={e => setLinkStrengthVal(+e.target.value)}
           />
         </label>
-
-        <button
-          onClick={onRestart}
-          style={{
-            fontSize: 11,
-            padding: "4px 10px",
-            background: "transparent",
-            color: "#aaa",
-            border: "0.5px solid #555",
-            borderRadius: 5,
-            cursor: "pointer",
-          }}
-        >
-          ↺ Reiniciar
-        </button>
       </div>
 
       {/* Leyenda de uso */}
