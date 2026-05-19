@@ -73,7 +73,7 @@ export function handleMouseMove(event, container, canvas, state, tooltip, onDraw
     tooltip.style.left = (px + 14) + "px";
     tooltip.style.top = (py - 8) + "px";
     tooltip.innerHTML = 
-      `<strong style="color:#fff">${node.id}</strong><br>
+      `<strong style="color:#fff">${node.name || node.id}</strong><br>
        <span style="color:#888">${degree} link${degree !== 1 ? "s" : ""}</span>`;
     container.style.cursor = "pointer";
   } else {

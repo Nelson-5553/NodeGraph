@@ -16,6 +16,7 @@ import { NodeGraphControls } from "./NodeGraphControls";
 
 interface NodeElement {
   id: string;
+  name: string;
   group: number;
   x?: number;
   y?: number;

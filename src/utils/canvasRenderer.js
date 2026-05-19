@@ -80,7 +80,7 @@ function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labe
     ctx.fillStyle = isHovered ? hoverColor : color;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(node.id, sx, sy + r + 9 * scale * dpr);
+    ctx.fillText(node.name || node.id, sx, sy + r + 9 * scale * dpr);
   }
 }
 
