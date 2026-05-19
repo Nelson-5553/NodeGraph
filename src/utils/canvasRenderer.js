@@ -1,18 +1,9 @@
-/**
- * Lógica de renderizado en canvas para el grafo
- */
+// Canvas rendering logic for graph visualization
 
 import { toScreen } from './coordinateUtils';
 import { getDegree, nodeRadius } from './nodeUtils';
 
-/**
- * Dibuja todos los enlaces en el canvas
- * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
- * @param {Array} links - Array de enlaces
- * @param {Object} viewState - Estado de vista (scale, offsetX, offsetY, hoveredNode)
- * @param {number} dpr - Device pixel ratio
- * @param {Object} linkStyles - Estilos de los enlaces
- */
+// Draws all links on canvas
 function drawLinks(ctx, links, viewState, dpr, linkStyles = {}) {
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
   const {
@@ -40,15 +31,7 @@ function drawLinks(ctx, links, viewState, dpr, linkStyles = {}) {
   });
 }
 
-/**
- * Dibuja el anillo de glow alrededor de un nodo cuando está en hover
- * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
- * @param {number} sx - Coordenada X en pantalla
- * @param {number} sy - Coordenada Y en pantalla
- * @param {number} r - Radio del nodo en pantalla
- * @param {string} color - Color del nodo
- * @param {number} dpr - Device pixel ratio
- */
+// Draws glow ring around hovered nodes
 function drawNodeGlow(ctx, sx, sy, r, color, dpr) {
   ctx.beginPath();
   ctx.arc(sx, sy, r + 5 * dpr, 0, Math.PI * 2);
@@ -59,18 +42,7 @@ function drawNodeGlow(ctx, sx, sy, r, color, dpr) {
   ctx.globalAlpha = 1;
 }
 
-/**
- * Dibuja un nodo individual
- * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
- * @param {Object} node - Objeto del nodo
- * @param {number} sx - Coordenada X en pantalla
- * @param {number} sy - Coordenada Y en pantalla
- * @param {number} r - Radio del nodo en pantalla
- * @param {string} color - Color del nodo
- * @param {boolean} isHovered - Si el nodo está en hover
- * @param {number} dpr - Device pixel ratio
- * @param {string} nodeHoverColor - Color del nodo cuando está en hover
- */
+// Draws a single node circle
 function drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor = "#fff") {
   ctx.beginPath();
   ctx.arc(sx, sy, r, 0, Math.PI * 2);
@@ -80,19 +52,7 @@ function drawNode(ctx, node, sx, sy, r, color, isHovered, dpr, nodeHoverColor = 
   ctx.globalAlpha = 1;
 }
 
-/**
- * Dibuja la etiqueta de un nodo (si es necesario)
- * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
- * @param {Object} node - Objeto del nodo
- * @param {number} sx - Coordenada X en pantalla
- * @param {number} sy - Coordenada Y en pantalla
- * @param {number} r - Radio del nodo en pantalla
- * @param {number} degree - Número de conexiones del nodo
- * @param {boolean} isHovered - Si el nodo está en hover
- * @param {number} scale - Factor de escala actual
- * @param {number} dpr - Device pixel ratio
- * @param {Object} labelOptions - Opciones de personalización del label
- */
+// Draws node labels based on degree and zoom level
 function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labelOptions = {}) {
   const {
     color = "rgba(220,215,205,0.9)",
@@ -103,17 +63,14 @@ function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labe
     minScaleToShow = 0.55,
   } = labelOptions;
 
-  // Determinar si mostrar el label basado en la configuración
+  // Determine label visibility based on config
   let shouldShowLabel = false;
 
   if (isHovered) {
-    // Siempre mostrar en hover
     shouldShowLabel = true;
   } else if (showOnHover) {
-    // Si showOnHover es true, NO mostrar el label cuando no hay hover
     shouldShowLabel = false;
   } else {
-    // Mostrar si tiene suficientes conexiones y escala mínima
     shouldShowLabel = degree >= minDegreeToShow && scale > minScaleToShow;
   }
 
@@ -127,17 +84,7 @@ function drawNodeLabel(ctx, node, sx, sy, r, degree, isHovered, scale, dpr, labe
   }
 }
 
-/**
- * Dibuja todos los nodos en el canvas
- * @param {CanvasRenderingContext2D} ctx - Contexto del canvas
- * @param {Array} nodes - Array de nodos
- * @param {Array} links - Array de enlaces
- * @param {Object} viewState - Estado de vista
- * @param {Array} colors - Paleta de colores
- * @param {number} dpr - Device pixel ratio
- * @param {string} nodeHoverColor - Color del nodo cuando está en hover
- * @param {Object} labelOptions - Opciones de personalización del label
- */
+// Draws all nodes on canvas
 function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "#fff", labelOptions = {}) {
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
   
@@ -160,15 +107,7 @@ function drawNodes(ctx, nodes, links, viewState, colors, dpr, nodeHoverColor = "
   });
 }
 
-/**
- * Función principal de renderizado
- * @param {HTMLCanvasElement} canvas - Elemento canvas
- * @param {Array} nodes - Array de nodos
- * @param {Array} links - Array de enlaces
- * @param {Object} viewState - Estado de vista
- * @param {Array} colors - Paleta de colores
- * @param {Object} linkStyles - Estilos de los enlaces, nodos y labels
- */
+// Main render function
 export function draw(canvas, nodes, links, viewState, colors, linkStyles = {}) {
   if (!canvas) return;
   

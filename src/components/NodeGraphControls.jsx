@@ -74,9 +74,9 @@ export function NodeGraphControls({
           userSelect: "none",
         }}
       >
-        <div>⚡ Drag = mover nodo</div>
-        <div>🖱 Scroll = zoom</div>
-        <div>💡 Hover = ver nombre</div>
+        <div>Drag = mover nodo</div>
+        <div>Scroll = zoom</div>
+        <div>Hover = ver nombre</div>
       </div>
     </>
   );

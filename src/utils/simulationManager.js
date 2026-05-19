@@ -1,19 +1,8 @@
-/**
- * Lógica de simulación D3 (fuerzas, configuración)
- */
+// D3 force simulation setup and management
 
 import * as d3 from "d3";
 
-/**
- * Construye y configura la simulación D3
- * @param {Array} nodes - Array de nodos
- * @param {Array} links - Array de enlaces
- * @param {number} repulsion - Fuerza de repulsión (charge)
- * @param {number} linkStrength - Fuerza de enlace (0-10)
- * @param {number} linkDistance - Distancia deseada entre nodos enlazados
- * @param {Function} onTick - Callback a ejecutar en cada tick
- * @returns {d3.Simulation} La simulación creada
- */
+// Creates and configures D3 force simulation
 export function createSimulation(
   nodes,
   links,
@@ -44,11 +33,7 @@ export function createSimulation(
   return simulation;
 }
 
-/**
- * Reinicia la simulación (limpia posiciones y velocidades)
- * @param {d3.Simulation} simulation - La simulación a reiniciar
- * @param {Array} nodes - Array de nodos
- */
+// Restarts simulation, clearing positions and velocities
 export function restartSimulation(simulation, nodes) {
   nodes.forEach(d => {
     delete d.x;

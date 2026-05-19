@@ -1,17 +1,9 @@
-/**
- * Manejo de eventos de mouse (click, drag, pan, zoom)
- */
+// Mouse event handling (click, drag, pan, zoom)
 
 import { toSim } from './coordinateUtils';
 import { nodeRadius } from './nodeUtils';
 
-/**
- * Encuentra el nodo en las coordenadas del mouse
- * @param {number} px - Coordenada X en pantalla
- * @param {number} py - Coordenada Y en pantalla
- * @param {Object} state - Estado actual (nodes, links, scale, offset)
- * @returns {Object|null} El nodo encontrado o null
- */
+// Finds node at mouse coordinates
 export function getNodeAt(px, py, state) {
   const { scale, offsetX, offsetY, nodes, links } = state;
   const dpr = window.devicePixelRatio || 1;
@@ -26,14 +18,7 @@ export function getNodeAt(px, py, state) {
   });
 }
 
-/**
- * Maneja el evento de presionar el mouse
- * @param {MouseEvent} event - Evento de mouse
- * @param {HTMLElement} container - Contenedor del canvas
- * @param {HTMLCanvasElement} canvas - Elemento canvas
- * @param {Object} state - Estado actual (será modificado)
- * @param {d3.Simulation} simulation - Simulación D3
- */
+// Handles mouse down (node drag or pan start)
 export function handleMouseDown(event, container, canvas, state, simulation) {
   const rect = canvas.getBoundingClientRect();
   const px = event.clientX - rect.left;
@@ -54,21 +39,13 @@ export function handleMouseDown(event, container, canvas, state, simulation) {
   }
 }
 
-/**
- * Maneja el movimiento del mouse
- * @param {MouseEvent} event - Evento de mouse
- * @param {HTMLElement} container - Contenedor del canvas
- * @param {HTMLCanvasElement} canvas - Elemento canvas
- * @param {Object} state - Estado actual (será modificado)
- * @param {HTMLElement} tooltip - Elemento tooltip
- * @param {Function} onDraw - Función para redibujar
- */
+// Handles mouse move (drag, pan, hover detection)
 export function handleMouseMove(event, container, canvas, state, tooltip, onDraw) {
   const rect = canvas.getBoundingClientRect();
   const px = event.clientX - rect.left;
   const py = event.clientY - rect.top;
   
-  // Si estamos arrastrando un nodo
+  // Handle node drag
   if (state.draggingNode) {
     const dpr = window.devicePixelRatio || 1;
     const [sx, sy] = toSim(px * dpr, py * dpr, state.scale, state.offsetX, state.offsetY, dpr);
@@ -76,20 +53,20 @@ export function handleMouseMove(event, container, canvas, state, tooltip, onDraw
     state.draggingNode.fy = sy;
     return;
   }
-  
-  // Si estamos haciendo pan
+
+  // Handle pan
   if (state.panStart) {
     state.offsetX = state.panOrig.x + (event.clientX - state.panStart.x);
     state.offsetY = state.panOrig.y + (event.clientY - state.panStart.y);
     onDraw();
     return;
   }
-  
-  // Hover detection
+
+  // Update node hover state
   const node = getNodeAt(px, py, state);
   state.hoveredNode = node ?? null;
-  
-  // Actualizar tooltip
+
+  // Update tooltip display
   if (node && tooltip) {
     const degree = state.links.filter(l => l.source?.id === node.id || l.target?.id === node.id).length;
     tooltip.style.display = "block";
@@ -97,22 +74,17 @@ export function handleMouseMove(event, container, canvas, state, tooltip, onDraw
     tooltip.style.top = (py - 8) + "px";
     tooltip.innerHTML = 
       `<strong style="color:#fff">${node.id}</strong><br>
-       <span style="color:#888">${degree} enlace${degree !== 1 ? "s" : ""}</span>`;
+       <span style="color:#888">${degree} link${degree !== 1 ? "s" : ""}</span>`;
     container.style.cursor = "pointer";
   } else {
     if (tooltip) tooltip.style.display = "none";
     container.style.cursor = state.panStart ? "grabbing" : "grab";
   }
-  
+
   onDraw();
 }
 
-/**
- * Maneja el evento de soltar el mouse
- * @param {Object} state - Estado actual (será modificado)
- * @param {HTMLElement} container - Contenedor del canvas
- * @param {d3.Simulation} simulation - Simulación D3
- */
+// Handles mouse up (end drag or pan)
 export function handleMouseUp(state, container, simulation) {
   if (state.draggingNode) {
     state.draggingNode.fx = null;
@@ -124,13 +96,7 @@ export function handleMouseUp(state, container, simulation) {
   container.style.cursor = "grab";
 }
 
-/**
- * Maneja el evento de salir del canvas
- * @param {Object} state - Estado actual (será modificado)
- * @param {HTMLElement} container - Contenedor del canvas
- * @param {HTMLElement} tooltip - Elemento tooltip
- * @param {Function} onDraw - Función para redibujar
- */
+// Handles mouse leave canvas
 export function handleMouseLeave(state, container, tooltip, onDraw) {
   if (tooltip) tooltip.style.display = "none";
   state.hoveredNode = null;
@@ -146,13 +112,7 @@ export function handleMouseLeave(state, container, tooltip, onDraw) {
   onDraw();
 }
 
-/**
- * Maneja el evento de rueda (zoom)
- * @param {WheelEvent} event - Evento de rueda
- * @param {HTMLCanvasElement} canvas - Elemento canvas
- * @param {Object} state - Estado actual (será modificado)
- * @param {Function} onDraw - Función para redibujar
- */
+// Handles wheel event (zoom)
 export function handleWheel(event, canvas, state, onDraw) {
   event.preventDefault();
   
