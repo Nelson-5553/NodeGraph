@@ -72,29 +72,37 @@ const DemoSection: FC = () => {
             
              
                 <NodeGraph
-                  nodes={DEMO_NODES}
-                  links={DEMO_LINKS}
-                  viewGuide={false}
-                  height={500}
-                  width="100%"
-                  repulsion={repulsion}
-                  colors={[
-                    "#06B6D4", // cyan
-                    "#3B82F6", // blue
-                    "#8B5CF6", // purple
-                    "#EC4899", // pink
-                  ]}
-                  linkColor="rgba(255,255,255,0.15)"
-                  linkWidth={linkWidth}
-                  linkHoverColor="#FFFFFF"
-                  nodeHoverColor="#FFFFFF"
-                  nodeLabelFontSize={11}
-                  nodeLabelColor="rgba(209,213,219,0.85)"
-                  nodeLabelHoverColor="#FFFFFF"
-                  nodeLabelShowOnHover={false}
-                  nodeLabelMinDegree={3}
-                  nodeLabelMinScale={0.3}
-                />
+  nodes={DEMO_NODES}
+  links={DEMO_LINKS}
+  viewGuide={false}
+  height={500}
+  width="100%"
+  repulsion={repulsion}
+  colors={[
+    "#00F5FF", // neon cyan
+    "#00FF9D", // neon green
+    "#8B5CF6", // electric purple
+    "#FF00E5", // neon magenta
+  ]}
+  linkColor="rgba(0,255,255,0.18)"
+  linkWidth={linkWidth}
+  linkHoverColor="#FFFFFF"
+  nodeHoverColor="#FFFFFF"
+  nodeLabelFontSize={11}
+  nodeLabelColor="rgba(255,255,255,0.9)"
+  nodeLabelHoverColor="#00F5FF"
+  nodeLabelShowOnHover={false}
+  nodeLabelMinDegree={2}
+  nodeLabelMinScale={0.25}
+  className="
+    rounded-3xl
+    border
+    border-cyan-400/30
+    bg-[#050816]
+    shadow-[0_0_25px_rgba(0,255,255,0.15)]
+    backdrop-blur-xl
+  "
+/>
               
 
           </motion.div>

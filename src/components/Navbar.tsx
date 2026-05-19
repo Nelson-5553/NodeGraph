@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { GitFork, Star } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg"></div>
+            <div className="w-8 h-8 rounded-lg flex justify-center items-center p-1 "><GitFork className="w-8 h-8 text-white" /></div>
             NodeGraph
           </motion.a>
 
@@ -50,12 +51,11 @@ const Navbar = () => {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
-            whileHover={{ scale: 1.05 }}
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-white text-sm font-semibold"
             whileTap={{ scale: 0.95 }}
           >
-            <span>⭐</span>
-            <span>GitHub</span>
+            <Star className="w-4 h-4" />
+            0k
           </motion.a>
 
           {/* Mobile Menu Button */}
