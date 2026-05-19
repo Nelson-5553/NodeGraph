@@ -304,7 +304,7 @@ const NodeGraph: FC<NodeGraphProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden cursor-grab bg-amber-600 ${className}`}
+      className={`relative overflow-hidden cursor-grab bg-neutral-900 ${className}`}
       style={containerStyle}
     >
       <canvas ref={canvasRef} style={canvasStyle} />
