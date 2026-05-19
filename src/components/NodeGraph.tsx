@@ -71,8 +71,8 @@ interface NodeGraphProps {
   links?: string[][];
   viewGuide?: boolean;
   colors?: string[];
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   repulsion?: number;
   linkDistance?: number;
   className?: string;
@@ -103,8 +103,8 @@ const NodeGraph: FC<NodeGraphProps> = ({
   links: rawLinks = [],
   viewGuide = true,
   colors = DEFAULT_COLORS,
-  width = 800,
-  height = 580,
+  width = "100%",
+  height = "100%",
   repulsion = 120,
   linkDistance = 55,
   className = "",
@@ -192,20 +192,26 @@ const NodeGraph: FC<NodeGraphProps> = ({
     [handleDraw, linkDistance]
   );
 
-  // ── Resize canvas ──────────────────────────────────────────────────────
-  const resizeCanvas = useCallback((): void => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+   // ── Resize canvas ──────────────────────────────────────────────────────
+   const resizeCanvas = useCallback((): void => {
+     const canvas = canvasRef.current;
+     const container = containerRef.current;
+     if (!canvas || !container) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    const { width: containerWidth } = container.getBoundingClientRect();
+     const dpr = window.devicePixelRatio || 1;
+     const { width: containerWidth, height: containerHeight } = container.getBoundingClientRect();
 
-    canvas.width = containerWidth * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = containerWidth + "px";
-    canvas.style.height = height + "px";
-  }, [height]);
+     canvas.width = containerWidth * dpr;
+     canvas.height = containerHeight * dpr;
+     canvas.style.width = containerWidth + "px";
+     canvas.style.height = containerHeight + "px";
+
+     // Update offset to center the view
+     stateRef.current.offsetX = containerWidth / 2;
+     stateRef.current.offsetY = containerHeight / 2;
+
+     handleDraw();
+   }, [handleDraw]);
 
   // ── Main effect: mount simulation and event listeners ──────────────────
   useEffect((): (() => void) => {
@@ -223,12 +229,9 @@ const NodeGraph: FC<NodeGraphProps> = ({
     stateRef.current.nodes = nodes;
     stateRef.current.links = links;
 
-    resizeCanvas();
+     resizeCanvas();
 
-    // Center offset
-    const { width: containerWidth } = container.getBoundingClientRect();
-    stateRef.current.offsetX = containerWidth / 2;
-    stateRef.current.offsetY = height / 2;
+     // Offset will be set in resizeCanvas() function now
 
     buildSim(nodes, links, repulsionVal, linkStrengthVal);
 
@@ -274,13 +277,13 @@ const NodeGraph: FC<NodeGraphProps> = ({
       canvas.removeEventListener("wheel", onWheel);
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [rawNodes, rawLinks, repulsionVal, linkStrengthVal, buildSim, handleDraw, resizeCanvas, height]);
+   }, [rawNodes, rawLinks, repulsionVal, linkStrengthVal, buildSim, handleDraw, resizeCanvas]);
 
-  // ── Styles ─────────────────────────────────────────────────────────────
-  const containerStyle: CSSProperties = {
-    width: `${width}px`,
-    height: `${height}px`,
-  };
+   // ── Styles ─────────────────────────────────────────────────────────────
+   const containerStyle: CSSProperties = {
+     width: typeof width === "string" ? width : `${width}px`,
+     height: typeof height === "string" ? height : `${height}px`,
+   };
 
   const canvasStyle: CSSProperties = {
     position: "absolute",

@@ -76,7 +76,7 @@ const DemoSection: FC = () => {
                   links={DEMO_LINKS}
                   viewGuide={false}
                   height={500}
-                  width={920}
+                  width="100%"
                   repulsion={repulsion}
                   colors={[
                     "#06B6D4", // cyan
@@ -92,7 +92,7 @@ const DemoSection: FC = () => {
                   nodeLabelColor="rgba(209,213,219,0.85)"
                   nodeLabelHoverColor="#FFFFFF"
                   nodeLabelShowOnHover={false}
-                  nodeLabelMinDegree={0}
+                  nodeLabelMinDegree={3}
                   nodeLabelMinScale={0.3}
                 />
               
