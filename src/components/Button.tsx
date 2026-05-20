@@ -24,11 +24,11 @@ const Button: FC<ButtonProps> = ({
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:shadow-lg hover:shadow-cyan-500/50 hover:scale-105 active:scale-95",
+      "bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:shadow-lg hover:shadow-cyan-400/50 hover:scale-105 active:scale-95",
     secondary:
-      "bg-neutral-800 text-white border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-700 active:scale-95",
+      "bg-gray-200 text-neutral-900 border border-gray-300 hover:border-gray-400 hover:bg-gray-300 active:scale-95",
     ghost:
-      "text-white hover:bg-white/10 active:bg-white/20 backdrop-blur-sm border border-white/20",
+      "text-neutral-900 hover:bg-gray-200 active:bg-gray-300 backdrop-blur-sm border border-gray-300",
   };
 
   const sizes = {

@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-md border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -24,11 +24,11 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#"
-            className="flex items-center gap-2 font-bold text-xl text-white"
+            className="flex items-center gap-2 font-bold text-xl text-neutral-900"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 rounded-lg flex justify-center items-center p-1 "><GitFork className="w-8 h-8 text-white" /></div>
+            <div className="w-8 h-8 rounded-lg flex justify-center items-center p-1 "><GitFork className="w-8 h-8 text-neutral-900" /></div>
             NodeGraph
           </motion.a>
 
@@ -38,8 +38,8 @@ const Navbar = () => {
               <motion.a
                 key={link.label}
                 href={link.href}
-                className="text-neutral-300 hover:text-white transition-colors text-sm"
-                whileHover={{ color: "#fff" }}
+                className="text-neutral-600 hover:text-neutral-900 transition-colors text-sm"
+                whileHover={{ color: "#000" }}
               >
                 {link.label}
               </motion.a>
@@ -51,7 +51,7 @@ const Navbar = () => {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-white text-sm font-semibold"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-neutral-900 text-sm font-semibold"
             whileTap={{ scale: 0.95 }}
           >
             <Star className="w-4 h-4" />
@@ -60,7 +60,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-white"
+            className="md:hidden text-neutral-900"
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -87,7 +87,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="block px-4 py-2 text-neutral-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors text-sm"
+                className="block px-4 py-2 text-neutral-600 hover:text-neutral-900 hover:bg-gray-100 rounded-lg transition-colors text-sm"
               >
                 {link.label}
               </a>

@@ -70,7 +70,7 @@ const FeaturesSection: FC = () => {
   };
 
   return (
-    <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-transparent to-cyan-500/5">
+     <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-transparent to-cyan-400/5">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -81,12 +81,12 @@ const FeaturesSection: FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block text-white mb-2">Powerful Features</span>
+            <span className="block text-neutral-900 mb-2">Powerful Features</span>
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Built for Developers
             </span>
           </h2>
-          <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Everything you need to visualize complex data structures and network
             graphs with ease.
           </p>
@@ -119,11 +119,11 @@ const FeaturesSection: FC = () => {
                     {feature.icon}
                   </motion.div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
+                  <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
                     {feature.title}
                   </h3>
 
-                  <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors duration-300">
+                  <p className="text-neutral-600 group-hover:text-neutral-700 transition-colors duration-300">
                     {feature.description}
                   </p>
 

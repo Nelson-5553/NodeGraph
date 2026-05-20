@@ -3,7 +3,7 @@
 @layer base {
   /* Root Variables */
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   /* Base Styles */
@@ -12,15 +12,15 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950;
-    @apply text-neutral-100;
+    @apply bg-gradient-to-br from-white via-gray-50 to-gray-100;
+    @apply text-neutral-900;
     @apply antialiased;
     overflow-x: hidden;
   }
 
   /* Selection Color */
   ::selection {
-    @apply bg-cyan-500/30 text-white;
+    @apply bg-cyan-400/30 text-neutral-900;
   }
 }
 
@@ -103,7 +103,7 @@
 
   /* Glass Morphism */
   .glass {
-    @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl;
+    @apply backdrop-blur-md bg-white/40 border border-gray-300 rounded-2xl;
   }
 
   /* Smooth Transitions */
@@ -113,7 +113,7 @@
 
   /* Focus Ring */
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:ring-offset-2 focus:ring-offset-neutral-900;
+    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:ring-offset-2 focus:ring-offset-white;
   }
 
   /* Scrollbar Styling */
@@ -127,11 +127,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
   }
 }

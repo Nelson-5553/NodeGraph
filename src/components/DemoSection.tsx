@@ -38,7 +38,7 @@ const DemoSection: FC = () => {
   const [linkWidth, setLinkWidth] = useState(0.8);
 
   return (
-    <section id="demo" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent">
+     <section id="demo" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-blue-400/5 to-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -49,12 +49,12 @@ const DemoSection: FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block text-white mb-2">Interactive Demo</span>
+            <span className="block text-neutral-900 mb-2">Interactive Demo</span>
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Play with the Controls
             </span>
           </h2>
-          <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Adjust the parameters in real-time and watch the graph respond
             instantly. Drag nodes, zoom, and pan around.
           </p>
@@ -98,8 +98,8 @@ const DemoSection: FC = () => {
     rounded-3xl
     border
     border-cyan-400/30
-    bg-[#050816]
-    shadow-[0_0_25px_rgba(0,255,255,0.15)]
+                    bg-gray-900
+                    shadow-[0_0_25px_rgba(6,182,212,0.15)]
     backdrop-blur-xl
   "
 />
@@ -116,50 +116,50 @@ const DemoSection: FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <Card className="p-6 sticky top-32 h-fit">
-              <h3 className="text-xl font-bold text-white mb-6">Controls</h3>
+              <h3 className="text-xl font-bold text-neutral-900 mb-6">Controls</h3>
 
-              {/* Repulsion Control */}
-              <div className="mb-8">
-                <label className="block text-sm font-semibold text-neutral-300 mb-3">
-                  Repulsion
-                </label>
-                <input
-                  type="range"
-                  min="30"
-                  max="200"
-                  value={repulsion}
-                  onChange={(e) => setRepulsion(Number(e.target.value))}
-                  className="w-full h-2 bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
-                />
-                <div className="text-sm text-cyan-400 font-mono mt-2">{repulsion}</div>
-                <p className="text-xs text-neutral-500 mt-2">
+               {/* Repulsion Control */}
+               <div className="mb-8">
+                 <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                   Repulsion
+                 </label>
+                 <input
+                   type="range"
+                   min="30"
+                   max="200"
+                   value={repulsion}
+                   onChange={(e) => setRepulsion(Number(e.target.value))}
+                   className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                 />
+                 <div className="text-sm text-cyan-600 font-mono mt-2">{repulsion}</div>
+                 <p className="text-xs text-neutral-600 mt-2">
                   How strongly nodes push apart from each other
                 </p>
               </div>
 
-              {/* Link Width Control */}
-              <div className="mb-8">
-                <label className="block text-sm font-semibold text-neutral-300 mb-3">
-                  Link Width
-                </label>
-                <input
-                  type="range"
-                  min="0.2"
-                  max="2"
-                  step="0.1"
-                  value={linkWidth}
-                  onChange={(e) => setLinkWidth(Number(e.target.value))}
-                  className="w-full h-2 bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                />
-                <div className="text-sm text-blue-400 font-mono mt-2">{linkWidth.toFixed(1)}</div>
-                <p className="text-xs text-neutral-500 mt-2">
+               {/* Link Width Control */}
+               <div className="mb-8">
+                 <label className="block text-sm font-semibold text-neutral-700 mb-3">
+                   Link Width
+                 </label>
+                 <input
+                   type="range"
+                   min="0.2"
+                   max="2"
+                   step="0.1"
+                   value={linkWidth}
+                   onChange={(e) => setLinkWidth(Number(e.target.value))}
+                   className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                 />
+                 <div className="text-sm text-blue-600 font-mono mt-2">{linkWidth.toFixed(1)}</div>
+                 <p className="text-xs text-neutral-600 mt-2">
                   Thickness of connection lines
                 </p>
               </div>
 
-              {/* Info */}
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-xs text-neutral-400 leading-relaxed">
+               {/* Info */}
+               <div className="pt-6 border-t border-gray-300">
+                 <p className="text-xs text-neutral-600 leading-relaxed">
                   💡 Drag nodes to move them. Scroll to zoom. Right-click to pan.
                 </p>
               </div>

@@ -78,7 +78,7 @@ const ExamplesSection: FC = () => {
   };
 
   return (
-    <section id="examples" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-500/5 via-transparent to-pink-500/5">
+     <section id="examples" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-400/5 via-transparent to-pink-400/5">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -89,12 +89,12 @@ const ExamplesSection: FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block text-white mb-2">Real-World Examples</span>
+            <span className="block text-neutral-900 mb-2">Real-World Examples</span>
             <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               See What's Possible
             </span>
           </h2>
-          <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             NodeGraph powers visualization across industries. Explore these use
             cases and see how you can use it.
           </p>
@@ -120,13 +120,13 @@ const ExamplesSection: FC = () => {
                   {example.icon}
                 </motion.div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
+                 {/* Content */}
+                 <div className="flex-1">
+                   <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
                     {example.title}
                   </h3>
 
-                  <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors duration-300 mb-4">
+                   <p className="text-neutral-700 group-hover:text-neutral-800 transition-colors duration-300 mb-4">
                     {example.description}
                   </p>
 
@@ -136,7 +136,7 @@ const ExamplesSection: FC = () => {
                       animate={{ scale: [1, 1.5, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     ></motion.div>
-                    <span className="text-xs font-medium text-neutral-400">
+                     <span className="text-xs font-medium text-neutral-700">
                       {example.useCase}
                     </span>
                   </div>
