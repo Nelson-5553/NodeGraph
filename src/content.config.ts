@@ -11,6 +11,7 @@ import { z } from 'astro/zod';
 const usage = defineCollection({
   loader: glob({ base: './src/content/usage', pattern: '**/*.{md,json}' }),
   schema: z.object({
+    id: z.string(),
     title: z.string(),
     description: z.string(),
     graph: z.array(z.object({

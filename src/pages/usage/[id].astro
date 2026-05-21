@@ -1,0 +1,54 @@
+---
+import Layout from "../../Layouts/Layout.astro";
+import NodeGraph from "../../components/NodeGraph";
+import DocsSection from "../../components/DocsSection";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const usageItems = await getCollection("usage");
+
+  return usageItems.map((item) => ({
+    params: { id: item.data.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<Layout title={`NodeGraph - Usage Example ${item.data.id}`}>
+  <section class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-cyan-400/5 via-transparent to-transparent">
+      <div class="max-w-4xl mx-auto">
+        <div class="w-full h-120 rounded-lg shadow-lg">
+          <NodeGraph
+        nodes={item.data.graph[0].nodes}
+        links={item.data.graph[0].links}
+        viewGuide={item.data.graph[0].viewGuide ?? false}
+        colors={item.data.graph[0].colors}
+        width={item.data.graph[0].width ?? "100%"}
+        height={item.data.graph[0].height ?? "100%"}
+        repulsion={item.data.graph[0].repulsion}
+        linkDistance={item.data.graph[0].linkDistance}
+        className={item.data.graph[0].className}
+        linkColor={item.data.graph[0].linkColor}
+        linkWidth={item.data.graph[0].linkWidth}
+        linkHoverColor={item.data.graph[0].linkHoverColor}
+        linkHoverWidth={item.data.graph[0].linkHoverWidth}
+        nodeHoverColor={item.data.graph[0].nodeHoverColor}
+        nodeLabelColor={item.data.graph[0].nodeLabelColor}
+        nodeLabelHoverColor={item.data.graph[0].nodeLabelHoverColor}
+        nodeLabelFontSize={item.data.graph[0].nodeLabelFontSize}
+        nodeLabelShowOnHover={item.data.graph[0].nodeLabelShowOnHover}
+        nodeLabelMinDegree={item.data.graph[0].nodeLabelMinDegree}
+        nodeLabelMinScale={item.data.graph[0].nodeLabelMinScale}
+        client:only
+      />
+        </div>
+        <h2 class="mt-8 text-3xl font-extrabold text-gray-900">{item.data.title}</h2>
+        <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
+
+        
+      </div>
+    </section>
+    <DocsSection client:only />
+</Layout>

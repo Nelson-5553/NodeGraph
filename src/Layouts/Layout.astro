@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer';
 
 interface Props {
     title?: string;
@@ -39,5 +40,6 @@ const {
 </head>
 <body>
     <slot />
+    <Footer  client:only/>
 </body>
 </html>

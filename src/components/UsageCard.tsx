@@ -30,6 +30,7 @@ interface GraphData {
 
 interface UsageItem {
   data: {
+    id: string;
     title: string;
     description: string;
     graph: GraphData[];
@@ -111,6 +112,9 @@ export default function UsageCard({ items }: UsageCardProps) {
                    <p className="m-0 text-[0.95rem] leading-6 text-gray-600">
                      {card.data.description}
                    </p>
+                   <a href={`/usage/${card.data.id}`} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                     Learn More
+                   </a>
                  </div>
                </div>
              </motion.article>
