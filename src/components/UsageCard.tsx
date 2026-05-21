@@ -1,11 +1,38 @@
 import { motion } from "framer-motion";
+import NodeGraph from "./NodeGraph";
+
+interface GraphData {
+  nodes: Array<{
+    id: string;
+    name: string;
+    group: number;
+  }>;
+  links: Array<[string, string]>;
+  viewGuide?: boolean;
+  colors?: string[];
+  width?: number | string;
+  height?: number | string;
+  repulsion?: number;
+  linkDistance?: number;
+  className?: string;
+  linkColor?: string;
+  linkWidth?: number;
+  linkHoverColor?: string;
+  linkHoverWidth?: number;
+  nodeHoverColor?: string;
+  nodeLabelColor?: string;
+  nodeLabelHoverColor?: string;
+  nodeLabelFontSize?: number;
+  nodeLabelShowOnHover?: boolean;
+  nodeLabelMinDegree?: number;
+  nodeLabelMinScale?: number;
+}
 
 interface UsageItem {
   data: {
     title: string;
     description: string;
-    image: string;
-    alt?: string;
+    graph: GraphData[];
   };
 }
 
@@ -44,28 +71,51 @@ export default function UsageCard({ items }: UsageCardProps) {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {items.map((card) => (
-            <motion.article
-              key={card.data.title}
-              variants={itemVariants}
-              className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300"
-            >
-              <img
-                src={card.data.image}
-                alt={card.data.alt || card.data.title}
-                loading="lazy"
-                className="block h-48 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="mb-2 text-[1.1rem] leading-[1.3]">
-                  {card.data.title}
-                </h3>
-                <p className="m-0 text-[0.95rem] leading-6 text-gray-600">
-                  {card.data.description}
-                </p>
-              </div>
-            </motion.article>
-          ))}
+           {items.map((card) => (
+             <motion.article
+               key={card.data.title}
+               variants={itemVariants}
+               className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 flex flex-col"
+             >
+               <div className="h-48 w-full bg-white shrink-0">
+                  {card.data.graph && card.data.graph.length > 0 && (
+                    <NodeGraph
+                    
+                      nodes={card.data.graph[0].nodes}
+                      links={card.data.graph[0].links}
+                      viewGuide={card.data.graph[0].viewGuide ?? false}
+                      colors={card.data.graph[0].colors}
+                      width={card.data.graph[0].width ?? "100%"}
+                      height={card.data.graph[0].height ?? "100%"}
+                      repulsion={card.data.graph[0].repulsion}
+                      linkDistance={card.data.graph[0].linkDistance}
+                      className={card.data.graph[0].className}
+                      linkColor={card.data.graph[0].linkColor}
+                      linkWidth={card.data.graph[0].linkWidth}
+                      linkHoverColor={card.data.graph[0].linkHoverColor}
+                      linkHoverWidth={card.data.graph[0].linkHoverWidth}
+                      nodeHoverColor={card.data.graph[0].nodeHoverColor}
+                      nodeLabelColor={card.data.graph[0].nodeLabelColor}
+                      nodeLabelHoverColor={card.data.graph[0].nodeLabelHoverColor}
+                      nodeLabelFontSize={card.data.graph[0].nodeLabelFontSize}
+                      nodeLabelShowOnHover={card.data.graph[0].nodeLabelShowOnHover}
+                      nodeLabelMinDegree={card.data.graph[0].nodeLabelMinDegree}
+                      nodeLabelMinScale={card.data.graph[0].nodeLabelMinScale}
+                    />
+                  )}
+                </div>
+               <div className="p-4 grow flex flex-col justify-between">
+                 <div>
+                   <h3 className="mb-2 text-[1.1rem] leading-[1.3]">
+                     {card.data.title}
+                   </h3>
+                   <p className="m-0 text-[0.95rem] leading-6 text-gray-600">
+                     {card.data.description}
+                   </p>
+                 </div>
+               </div>
+             </motion.article>
+           ))}
         </motion.div>
       </div>
     </section>
