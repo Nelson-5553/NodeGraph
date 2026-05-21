@@ -1,201 +1,152 @@
-import { useState } from "react";
+"use client";
+
 import { motion } from "framer-motion";
-import Button from "./Button";
+import { Terminal } from "lucide-react";
 
-const HeroSection = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    const x = (clientX / innerWidth) * 20 - 10;
-    const y = (clientY / innerHeight) * 20 - 10;
-    setMousePosition({ x, y });
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  return (
-    <div
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Animated background gradients */}
-      <div className="absolute inset-0 overflow-hidden">
-         <motion.div
-           className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl opacity-60"
-           animate={{
-             scale: [1, 1.2, 1],
-             opacity: [0.6, 0.8, 0.6],
-           }}
-           transition={{ duration: 8, repeat: Infinity }}
-         ></motion.div>
-         <motion.div
-           className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl opacity-60"
-           animate={{
-             scale: [1.2, 1, 1.2],
-             opacity: [0.6, 0.8, 0.6],
-           }}
-           transition={{ duration: 8, repeat: Infinity, delay: 1 }}
-         ></motion.div>
-         <motion.div
-           className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2"
-           animate={{
-             scale: [1, 1.15, 1],
-             opacity: [0.4, 0.6, 0.4],
-           }}
-           transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-         ></motion.div>
-      </div>
-
-       {/* Grid background */}
-       <div className="absolute inset-0 opacity-10">
-         <div
-           className="w-full h-full"
-           style={{
-             backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(0,0,0,.05) 25%, rgba(0,0,0,.05) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0,0,0,.05) 25%, rgba(0,0,0,.05) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.05) 75%, rgba(0,0,0,.05) 76%, transparent 77%, transparent)`,
-             backgroundSize: "50px 50px",
-           }}
-         ></div>
-       </div>
-
-      {/* Content */}
-      <motion.div
-        className="relative z-10 text-center max-w-4xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-         {/* Badge */}
-         <motion.div variants={itemVariants} className="inline-block mb-8">
-           <motion.div
-             className="px-4 py-2 rounded-full bg-gray-200 border border-cyan-400/30 backdrop-blur-sm"
-             whileHover={{ borderColor: "rgba(34, 211, 238, 0.6)", scale: 1.05 }}
-             transition={{ duration: 0.3 }}
-           >
-            <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              ✨ Interactive Graph Visualization
-            </span>
-          </motion.div>
-        </motion.div>
-
-         {/* Main heading */}
-         <motion.div variants={itemVariants}>
-           <h1 className="mb-6 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-             <span className="block text-neutral-900 mb-3">NodeGraph</span>
-            <motion.span
-              className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
-              animate={{
-                backgroundPosition: ["0%", "100%", "0%"],
-              }}
-              transition={{ duration: 8, repeat: Infinity }}
-            >
-              Visualize Everything
-            </motion.span>
-          </h1>
-        </motion.div>
-
-         {/* Subtitle */}
-         <motion.p
-           variants={itemVariants}
-           className="text-lg sm:text-xl text-neutral-600 mb-12 max-w-2xl mx-auto leading-relaxed"
-         >
-          Interactive graph visualization component for modern web applications.
-          Render thousands of nodes with physics-based layouts and stunning
-          interactions.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-        >
-          <Button size="lg" variant="primary" href="#demo">
-            <span>⚡</span>
-            <span>Get Started</span>
-          </Button>
-          <Button size="lg" variant="secondary" href="#examples">
-            <span>🎯</span>
-            <span>View Examples</span>
-          </Button>
-          <Button
-            size="lg"
-            variant="ghost"
-            href="https://github.com"
-            target="_blank"
-          >
-            <span>⭐</span>
-            <span>GitHub</span>
-          </Button>
-        </motion.div>
-
-         {/* Stats */}
-         <motion.div
-           variants={itemVariants}
-           className="grid grid-cols-3 gap-4 sm:gap-8 mb-16 pt-8 border-t border-gray-300"
-         >
-          {[
-            { label: "Nodes Supported", value: "10K+" },
-            { label: "Smooth Rendering", value: "60fps" },
-            { label: "Customizable", value: "100%" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              className="text-center"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                {stat.value}
-              </div>
-              <div className="text-xs sm:text-sm text-neutral-500 mt-2">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex justify-center pt-8"
-        >
-          <svg
-            className="w-6 h-6 text-cyan-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
-export default HeroSection;
+const letterVariant = {
+  hidden: { opacity: 0, y: 20, scale: 0.85 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 300, damping: 18},
+  },
+};
 
+const LOGO_LETTERS = ["N", null, "d", "e", "G", "r", "a", "p", "h"];
+
+export default function NodeGraphHero() {
+  return (
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20">
+
+      {/* Subtle radial glows */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute bottom-[15%] right-[10%] h-72 w-72 rounded-full bg-purple-500/10 blur-3xl" />
+      </div>
+
+      {/* Floating nodes */}
+      {[
+        { size: 10, color: "bg-cyan-400", style: "top-[12%] left-[7%]", delay: 0 },
+        { size: 7,  color: "bg-purple-500", style: "top-[22%] right-[9%]", delay: 1 },
+        { size: 12, color: "bg-blue-500",  style: "bottom-[18%] left-[12%]", delay: 2 },
+        { size: 6,  color: "bg-cyan-300",  style: "bottom-[28%] right-[7%]", delay: 0.5 },
+      ].map((n, i) => (
+        <motion.span
+          key={i}
+          className={`absolute rounded-full opacity-40 ${n.color} ${n.style}`}
+          style={{ width: n.size, height: n.size }}
+          animate={{ y: [0, -8, 4, 0], x: [0, 4, -5, 0] }}
+          transition={{ duration: 5 + i, delay: n.delay, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+
+      {/* Badge */}
+      <div
+        className="mb-8 flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-1.5 md:inline-flex duration-600 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs"
+      >
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+        </span>
+        <span className="text-sm font-semibold tracking-wide text-cyan-500">
+          Interactive Graph Visualization
+        </span>
+      </div>
+
+      {/* Logo */}
+      <motion.div
+        className="mb-1 flex items-center"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {LOGO_LETTERS.map((letter, i) =>
+          letter === null ? (
+            // Orb replacing the "o"
+            <motion.span
+              key={i}
+              variants={letterVariant}
+              className="mx-1 flex items-center justify-center"
+              style={{ width: "clamp(2.4rem, 6vw, 3.6rem)", height: "clamp(2.4rem, 6vw, 3.6rem)" }}
+            >
+              <motion.span
+                className="block h-full w-full rounded-full"
+                style={{
+                  background: "radial-gradient(circle at 35% 35%, #67e8f9, #06b6d4 50%, #2563eb)",
+                  boxShadow: "0 0 18px rgba(6,182,212,0.4)",
+                  position: "relative",
+                }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                {/* Orb shine */}
+                <span
+                  className="absolute"
+                  style={{
+                    top: "18%", left: "22%",
+                    width: "28%", height: "20%",
+                    background: "rgba(255,255,255,0.55)",
+                    borderRadius: "50%",
+                    transform: "rotate(-20deg)",
+                  }}
+                />
+              </motion.span>
+            </motion.span>
+          ) : (
+            <motion.span
+              key={i}
+              variants={letterVariant}
+              className="cherry-bomb-one-regular text-neutral-900"
+              style={{ fontSize: "clamp(2.8rem, 8vw, 5rem)", lineHeight: 1 }}
+            >
+              {letter}
+            </motion.span>
+          )
+        )}
+      </motion.div>
+
+      {/* "Visualize Everything" tagline */}
+      <div className="duration-800 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs">
+         <motion.h2
+           className="bg-clip-text text-transparent h-28"
+           style={{
+             backgroundImage: "linear-gradient(90deg, #22d3ee 0%, #3b82f6 45%, #a855f7 100%)",
+             backgroundSize: "200% auto",
+             fontSize: "clamp(2.8rem, 9vw, 5.5rem)",
+             fontWeight: 800,
+             lineHeight: 1.05,
+           }}
+          animate={{ backgroundPosition: ["0% center", "200% center"] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        >
+          Visualize Everything
+        </motion.h2>
+      </div>
+
+       {/* Sub-tagline */}
+       <p
+         className="mt-3 text-center text-lg text-neutral-500 duration-1000 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs"
+        style={{ maxWidth: 480 }}
+       >
+         Turn complex data into stunning, interactive graphs — instantly.
+       </p>
+
+      {/* CTA buttons */}
+      <div
+        className="mt-8 flex gap-3 duration-1200 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs"
+      >
+        <div className="bg-gray-200 rounded-md p-2 overflow-x-auto ">
+                <code className="text-xl text-neutral-700 font-mono">
+                  <Terminal className="inline-block mr-2" />npm install nodegraph
+                </code>
+              </div>
+      </div>
+    </section>
+  );
+}
