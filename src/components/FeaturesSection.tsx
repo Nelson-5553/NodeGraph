@@ -1,9 +1,12 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import Card from "./Card";
+import type React from "react";
+import { Zap, Shell, Palette, Sparkles, CodeXml, Smartphone } from "lucide-react";
+
 
 interface Feature {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   color: string;
@@ -11,37 +14,37 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    icon: "⚡",
+    icon: <Zap className="w-8 h-8 group-hover:text-cyan-400 transition-colors duration-200" />,
     title: "Rendering Performance",
     description: "Efficiently render thousands of nodes without performance degradation. Optimized canvas rendering with smooth 60fps animations.",
     color: "from-cyan-500 to-blue-500",
   },
   {
-    icon: "🌀",
+    icon: <Shell className="w-8 h-8 group-hover:text-blue-400 transition-colors duration-200" />,
     title: "Interactive Physics",
     description: "Dynamic force-directed physics simulation. Fully configurable repulsion, link distance, and animation parameters for perfect layouts.",
     color: "from-blue-500 to-purple-500",
   },
   {
-    icon: "🎨",
+    icon: <Palette className="w-8 h-8 group-hover:text-purple-400 transition-colors duration-200" />,
     title: "Custom Styling",
     description: "Extensive customization options. Color schemes, node sizes, labels, link styles, and hover effects - all configurable.",
     color: "from-purple-500 to-pink-500",
   },
   {
-    icon: "📱",
+    icon: <Smartphone className="w-8 h-8 group-hover:text-orange-400 transition-colors duration-200" />,
     title: "Responsive Design",
     description: "Automatically adapts to any screen size. Perfect on desktop, tablet, and mobile devices with touch support.",
     color: "from-pink-500 to-orange-500",
   },
   {
-    icon: "✨",
+    icon: <Sparkles className="w-8 h-8 group-hover:text-yellow-400 transition-colors duration-200" />,
     title: "Hover Effects",
     description: "Rich interactive feedback with smooth transitions. Highlights connected nodes, changes colors, and shows dynamic tooltips.",
     color: "from-orange-500 to-yellow-500",
   },
   {
-    icon: "🔧",
+    icon: <CodeXml className="w-8 h-8 group-hover:text-green-400 transition-colors duration-200" />,
     title: "Developer Friendly",
     description: "Simple prop-based API. Easy integration with React, Astro, or any framework. Comprehensive documentation and examples.",
     color: "from-yellow-500 to-green-500",
@@ -65,12 +68,12 @@ const FeaturesSection: FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" as any},
     },
   };
 
   return (
-     <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-transparent to-cyan-400/5">
+     <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent via-transparent to-cyan-400/5">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -82,7 +85,7 @@ const FeaturesSection: FC = () => {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block text-neutral-900 mb-2">Powerful Features</span>
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
               Built for Developers
             </span>
           </h2>
@@ -106,20 +109,18 @@ const FeaturesSection: FC = () => {
                 {/* Gradient border on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div
-                    className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-10`}
+                    className={`absolute inset-0 bg-linear-to-r ${feature.color} opacity-10`}
                   ></div>
                 </div>
 
                 <div className="relative z-10">
                   <motion.div
-                    className={`text-5xl mb-4 inline-block p-3 rounded-xl bg-gradient-to-r ${feature.color} bg-clip-text`}
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    transition={{ duration: 0.3 }}
+                    className={`text-5xl mb-4 inline-block p-3 rounded-xl bg-linear-to-r ${feature.color} bg-clip-text group-hover:rotate-10 group-hover:scale-110 transition-transform duration-300`}
                   >
                     {feature.icon}
                   </motion.div>
 
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
+                  <h3 className={`text-xl font-bold text-neutral-900 mb-3 group-hover:bg-linear-to-r ${feature.color} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}>
                     {feature.title}
                   </h3>
 
@@ -128,7 +129,7 @@ const FeaturesSection: FC = () => {
                   </p>
 
                   <motion.div
-                    className={`mt-6 inline-block px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${feature.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                    className={`mt-6 inline-block px-3 py-1 rounded-full text-sm font-medium bg-linear-to-r ${feature.color} bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                     whileHover={{ scale: 1.05 }}
                   >
                     Learn more →
