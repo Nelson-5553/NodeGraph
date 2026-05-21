@@ -36,6 +36,22 @@ export default function NodeGraphHero() {
         { size: 7,  color: "bg-purple-500", style: "top-[22%] right-[9%]", delay: 1 },
         { size: 12, color: "bg-blue-500",  style: "bottom-[18%] left-[12%]", delay: 2 },
         { size: 6,  color: "bg-cyan-300",  style: "bottom-[28%] right-[7%]", delay: 0.5 },
+        { size: 16,  color: "bg-cyan-300",  style: "bottom-[28%] right-[15%]", delay: 0.5 },
+        { size: 8,  color: "bg-cyan-500",  style: "top-[30%] left-[18%]", delay: 1.2 },
+        { size: 9,  color: "bg-blue-400",  style: "top-[40%] right-[20%]", delay: 0.8 },
+        { size: 5,  color: "bg-purple-400", style: "top-[55%] left-[8%]", delay: 1.6 },
+        { size: 11, color: "bg-cyan-400",  style: "bottom-[12%] right-[25%]", delay: 0.3 },
+        { size: 7,  color: "bg-blue-500",  style: "bottom-[35%] left-[24%]", delay: 2.2 },
+        { size: 13, color: "bg-purple-500", style: "top-[15%] right-[28%]", delay: 1.4 },
+        { size: 6,  color: "bg-cyan-300",  style: "top-[68%] right-[12%]", delay: 2.8 },
+        { size: 10, color: "bg-blue-300",  style: "bottom-[20%] left-[35%]", delay: 0.9 },
+        { size: 14, color: "bg-cyan-400",  style: "top-[48%] left-[42%]", delay: 1.9 },
+        { size: 8,  color: "bg-purple-400", style: "bottom-[42%] right-[35%]", delay: 2.5 },
+        { size: 12, color: "bg-blue-500",  style: "top-[8%] left-[38%]", delay: 0.6 },
+        { size: 5,  color: "bg-cyan-500",  style: "bottom-[8%] right-[42%]", delay: 1.1 },
+        { size: 9,  color: "bg-purple-500", style: "top-[62%] left-[30%]", delay: 2.1 },
+        { size: 7,  color: "bg-blue-400",  style: "top-[35%] right-[40%]", delay: 1.7 },
+        { size: 11, color: "bg-cyan-300",  style: "bottom-[30%] left-[45%]", delay: 0.4 },
       ].map((n, i) => (
         <motion.span
           key={i}
