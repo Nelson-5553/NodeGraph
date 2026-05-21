@@ -2,9 +2,11 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import Card from "./Card";
 import Button from "./Button";
+import type React from "react";
+import { Globe, Brain, Package, Bot, Puzzle, Wrench } from "lucide-react";
 
 interface Example {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   gradient: string;
@@ -13,42 +15,42 @@ interface Example {
 
 const examples: Example[] = [
   {
-    icon: "🌐",
+    icon: <Globe className="w-8 h-8 group-hover:text-cyan-400 transition-colors duration-200" />,
     title: "Social Network Graph",
     description: "Visualize user connections and relationships. Perfect for social platforms and community networks.",
     gradient: "from-cyan-500 to-blue-500",
     useCase: "Social Networks",
   },
   {
-    icon: "🧠",
+    icon: <Brain className="w-8 h-8 group-hover:text-blue-400 transition-colors duration-200" />,
     title: "Knowledge Graph",
     description: "Map out interconnected concepts and ideas. Ideal for educational platforms and knowledge bases.",
     gradient: "from-blue-500 to-purple-500",
     useCase: "Education & Research",
   },
   {
-    icon: "📦",
+    icon: <Package className="w-8 h-8 group-hover:text-purple-400 transition-colors duration-200" />,
     title: "Dependency Tree",
     description: "Visualize package dependencies and system architecture. Essential for software development teams.",
     gradient: "from-purple-500 to-pink-500",
     useCase: "DevOps & Engineering",
   },
   {
-    icon: "🤖",
+    icon: <Bot className="w-8 h-8 group-hover:text-pink-400 transition-colors duration-200" />,
     title: "AI Workflow",
     description: "Display machine learning pipelines and neural networks. Great for AI/ML visualization.",
     gradient: "from-pink-500 to-orange-500",
     useCase: "Machine Learning",
   },
   {
-    icon: "🧩",
+    icon: <Puzzle className="w-8 h-8 group-hover:text-orange-400 transition-colors duration-200" />,
     title: "Mind Map",
     description: "Create beautiful mind maps and brainstorming sessions. Organize thoughts visually.",
     gradient: "from-orange-500 to-yellow-500",
     useCase: "Planning & Creativity",
   },
   {
-    icon: "🏗️",
+    icon: <Wrench className="w-8 h-8 group-hover:text-green-400 transition-colors duration-200" />,
     title: "Software Architecture",
     description: "Illustrate system design and component interactions. Perfect for documentation.",
     gradient: "from-yellow-500 to-green-500",
@@ -73,12 +75,12 @@ const ExamplesSection: FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" as any},
     },
   };
 
   return (
-     <section id="examples" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-400/5 via-transparent to-pink-400/5">
+     <section id="examples" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-purple-400/5 via-transparent to-pink-400/5">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -90,7 +92,7 @@ const ExamplesSection: FC = () => {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block text-neutral-900 mb-2">Real-World Examples</span>
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               See What's Possible
             </span>
           </h2>
@@ -114,15 +116,13 @@ const ExamplesSection: FC = () => {
                 {/* Icon */}
                 <motion.div
                   className="text-5xl mb-4"
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ duration: 0.3 }}
                 >
                   {example.icon}
                 </motion.div>
 
                  {/* Content */}
                  <div className="flex-1">
-                   <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text transition-all duration-300">
+                   <h3 className={`text-xl font-bold text-neutral-900 mb-3 group-hover:bg-linear-to-r ${example.gradient} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}>
                     {example.title}
                   </h3>
 
@@ -132,7 +132,7 @@ const ExamplesSection: FC = () => {
 
                   <div className="flex items-center gap-2 mb-6">
                     <motion.div
-                      className={`w-2 h-2 rounded-full bg-gradient-to-r ${example.gradient}`}
+                      className={`w-2 h-2 rounded-full bg-linear-to-r ${example.gradient}`}
                       animate={{ scale: [1, 1.5, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     ></motion.div>
@@ -141,15 +141,6 @@ const ExamplesSection: FC = () => {
                     </span>
                   </div>
                 </div>
-
-                {/* Button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="justify-start opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <span>Explore Demo →</span>
-                </Button>
               </Card>
             </motion.div>
           ))}
