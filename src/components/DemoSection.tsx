@@ -40,30 +40,10 @@ const DemoSection: FC = () => {
   return (
     <section
       id="demo"
-      className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent via-blue-400/5 to-transparent"
+      className="py-2lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent via-blue-400/5 to-transparent"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block text-neutral-900 mb-2">
-              Interactive Demo
-            </span>
-            <span className="bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Play with the Controls
-            </span>
-          </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            Adjust the parameters in real-time and watch the graph respond
-            instantly. Drag nodes, zoom, and pan around.
-          </p>
-        </motion.div>
+       
 
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Graph visualization */}

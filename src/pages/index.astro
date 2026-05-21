@@ -7,6 +7,7 @@ import DemoSection from "../components/DemoSection";
 import ExamplesSection from "../components/ExamplesSection";
 import DocsSection from "../components/DocsSection";
 import CTASection from "../components/CTASection";
+import UsageSection from "../components/UsageSection.astro";
 import Footer from "../components/Footer";
 ---
 
@@ -17,11 +18,14 @@ import Footer from "../components/Footer";
   <!-- Hero Section -->
   <HeroSection client:only />
 
-  <!-- Features Section -->
-  <FeaturesSection client:only />
-
   <!-- Demo Section -->
   <DemoSection client:only />
+
+  <!-- Usage Section -->
+  <UsageSection />
+
+  <!-- Features Section -->
+  <FeaturesSection client:only />
 
   <!-- Examples Section -->
   <ExamplesSection client:only />

@@ -1,0 +1,15 @@
+---
+import UsageCard from "./UsageCard";
+import { getCollection } from 'astro:content';
+
+const usageItems = await getCollection('usage');
+ 
+---
+
+<section>
+
+	    <UsageCard items={usageItems} client:only />
+</section>
+
+
+

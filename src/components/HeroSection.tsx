@@ -22,7 +22,7 @@ const LOGO_LETTERS = ["N", null, "d", "e", "G", "r", "a", "p", "h"];
 
 export default function NodeGraphHero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20">
+    <section className="relative flex min-h-120 flex-col items-center justify-center overflow-hidden bg-white px-6 py-20">
 
       {/* Subtle radial glows */}
       <div className="pointer-events-none absolute inset-0">
@@ -130,7 +130,7 @@ export default function NodeGraphHero() {
       {/* "Visualize Everything" tagline */}
       <div className="duration-800 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs">
          <motion.h2
-           className="bg-clip-text text-transparent h-28"
+           className="bg-clip-text text-transparent h-28 text-center"
            style={{
              backgroundImage: "linear-gradient(90deg, #22d3ee 0%, #3b82f6 45%, #a855f7 100%)",
              backgroundSize: "200% auto",
