@@ -1,0 +1,46 @@
+{
+  "title": "NodeStyle",
+  "description": "Demostración visual renovada para nodos y enlaces con mayor contraste",
+  "graph": [
+    {
+      "nodes": [
+        { "id": "1", "name": "Orbit", "group": 0 },
+        { "id": "2", "name": "Pulse", "group": 1 },
+        { "id": "3", "name": "Flux", "group": 2 },
+        { "id": "4", "name": "Nova", "group": 0 },
+        { "id": "5", "name": "Halo", "group": 1 },
+        { "id": "6", "name": "Echo", "group": 2 }
+      ],
+      "links": [
+        ["1", "2"],
+        ["2", "3"],
+        ["3", "4"],
+        ["4", "5"],
+        ["5", "6"],
+        ["6", "1"],
+        ["1", "3"],
+        ["2", "4"],
+        ["3", "5"],
+        ["3", "6"]
+      ],
+      "viewGuide": false,
+      "colors": ["#10b981", "#38bdf8", "#f472b6", "#facc15"],
+      "width": "100%",
+      "height": "100%",
+      "repulsion": 180,
+      "linkDistance": 70,
+      "linkColor": "rgba(56,189,248,0.65)",
+      "className": "bg-white",
+      "linkWidth": 3,
+      "linkHoverColor": "#facc15",
+      "linkHoverWidth": 3.6,
+      "nodeHoverColor": "#facc15",
+      "nodeLabelColor": "#000000",
+      "nodeLabelHoverColor": "#000000",
+      "nodeLabelFontSize": 12,
+      "nodeLabelShowOnHover": false,
+      "nodeLabelMinDegree": 4,
+      "nodeLabelMinScale": 0.2
+    }
+  ]
+}

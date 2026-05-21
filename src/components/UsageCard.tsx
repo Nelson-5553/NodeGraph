@@ -75,12 +75,11 @@ export default function UsageCard({ items }: UsageCardProps) {
              <motion.article
                key={card.data.title}
                variants={itemVariants}
-               className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] transition-shadow duration-300 flex flex-col"
+               className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:shadow-2xl hover:shadow-blue-500/20 transition-shadow duration-300 flex flex-col"
              >
                <div className="h-48 w-full bg-white shrink-0">
                   {card.data.graph && card.data.graph.length > 0 && (
                     <NodeGraph
-                    
                       nodes={card.data.graph[0].nodes}
                       links={card.data.graph[0].links}
                       viewGuide={card.data.graph[0].viewGuide ?? false}
