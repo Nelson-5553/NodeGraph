@@ -44,7 +44,7 @@ const { item } = Astro.props;
         client:only
       />
         </div>
-        <h2 class="mt-8 text-3xl font-extrabold text-gray-900">{item.data.title}</h2>
+        <h2 class="mt-8 text-3xl font-extrabold text-gray-900" transition:name={item.data.id}>{item.data.title}</h2>
         <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
 
         
