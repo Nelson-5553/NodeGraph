@@ -1,0 +1,51 @@
+{
+  "id": "7",
+  "title": "Physics Engine Control",
+  "description": "Control avanzado de física - Repulsión y distancia de enlaces ajustables para simulación realista",
+  "graph": [
+    {
+      "nodes": [
+        { "id": "1", "name": "Node A", "group": 0 },
+        { "id": "2", "name": "Node B", "group": 1 },
+        { "id": "3", "name": "Node C", "group": 2 },
+        { "id": "4", "name": "Node D", "group": 0 },
+        { "id": "5", "name": "Node E", "group": 1 },
+        { "id": "6", "name": "Node F", "group": 2 },
+        { "id": "7", "name": "Node G", "group": 0 },
+        { "id": "8", "name": "Node H", "group": 1 }
+      ],
+      "links": [
+        ["1", "2"],
+        ["2", "3"],
+        ["3", "4"],
+        ["4", "5"],
+        ["5", "6"],
+        ["6", "7"],
+        ["7", "8"],
+        ["8", "1"],
+        ["1", "4"],
+        ["2", "5"],
+        ["3", "6"],
+        ["4", "7"]
+      ],
+      "viewGuide": false,
+      "colors": ["#7c3aed", "#059669", "#2563eb", "#d97706"],
+      "width": "100%",
+      "height": "100%",
+      "repulsion": 300,
+      "linkDistance": 100,
+      "linkColor": "rgba(124,58,237,0.5)",
+      "className": "bg-white",
+      "linkWidth": 1.2,
+      "linkHoverColor": "#7c3aed",
+      "linkHoverWidth": 2,
+      "nodeHoverColor": "#7c3aed",
+      "nodeLabelColor": "#312e81",
+      "nodeLabelHoverColor": "#7c3aed",
+      "nodeLabelFontSize": 10,
+      "nodeLabelShowOnHover": false,
+      "nodeLabelMinDegree": 3,
+      "nodeLabelMinScale": 0.45
+    }
+  ]
+}

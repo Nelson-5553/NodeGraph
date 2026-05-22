@@ -1,0 +1,44 @@
+{
+  "id": "4",
+  "title": "Controlled Interaction",
+  "description": "Con controles básicos visibles - Permite ajustar la repulsión y la fuerza de los enlaces",
+  "graph": [
+    {
+      "nodes": [
+        { "id": "1", "name": "Server", "group": 0 },
+        { "id": "2", "name": "Client", "group": 1 },
+        { "id": "3", "name": "Database", "group": 2 },
+        { "id": "4", "name": "Cache", "group": 0 },
+        { "id": "5", "name": "Queue", "group": 1 },
+        { "id": "6", "name": "API", "group": 2 }
+      ],
+      "links": [
+        ["1", "2"],
+        ["1", "3"],
+        ["2", "3"],
+        ["1", "4"],
+        ["1", "5"],
+        ["2", "6"],
+        ["3", "4"]
+      ],
+      "viewGuide": true,
+      "colors": ["#3b82f6", "#8b5cf6", "#ec4899"],
+      "width": "100%",
+      "height": "100%",
+      "repulsion": 150,
+      "linkDistance": 65,
+      "linkColor": "rgba(59,130,246,0.5)",
+      "className": "bg-white",
+      "linkWidth": 1.5,
+      "linkHoverColor": "#0369a1",
+      "linkHoverWidth": 2.2,
+      "nodeHoverColor": "#0369a1",
+      "nodeLabelColor": "#1e293b",
+      "nodeLabelHoverColor": "#0369a1",
+      "nodeLabelFontSize": 11,
+      "nodeLabelShowOnHover": false,
+      "nodeLabelMinDegree": 4,
+      "nodeLabelMinScale": 0.5
+    }
+  ]
+}
