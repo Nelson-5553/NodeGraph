@@ -1,43 +1,164 @@
 ---
-import UsageCard from "./UsageCard";
-import { getCollection } from 'astro:content';
+import NodeGraph from "./NodeGraph";
+import { getCollection } from "astro:content";
+import { MoveRight } from "lucide-react";
 
-const usageItems = await getCollection('usage');
+const usageItems = await getCollection("usage");
 ---
 
-<section class="py-2 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent via-blue-400/5 to-transparent">
-	<div class="max-w-7xl mx-auto">
-		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-			{usageItems.map((item) => (
-				<div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:shadow-2xl hover:shadow-blue-500/20 transition-shadow duration-300 flex flex-col">
-					<div class="h-48 w-full bg-white shrink-0">
-						<UsageCard 
-							graph={{
-								...item.data.graph?.[0],
-								links: (item.data.graph?.[0]?.links || []).map((l) => [l[0], l[1]]),
-							}}
-							title={item.data.title}
-							description={item.data.description}
-							id={item.data.id}
-							client:only="react"
-						/>
-					</div>
-					<div class="p-4 grow flex flex-col justify-between">
-						<div>
-							<h3 class="mb-2 text-[1.1rem] leading-[1.3]" transition:name={item.data.id}>
-								{item.data.title}
-							</h3>
-							<p class="m-0 text-[0.95rem] leading-6 text-gray-600">
-								{item.data.description}
-							</p>
-							<a href={`/usage/${item.data.id}`} class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-								Learn More
-							</a>
-						</div>
-					</div>
-				</div>
-			))}
-		</div>
-	</div>
+<section class="relative overflow-hidden py-16 lg:py-28 px-4 sm:px-6 lg:px-8">
+  
+  <!-- background glow -->
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_40%)]"></div>
+
+  <!-- grid effect -->
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+  <div class="mx-auto max-w-7xl">
+    
+    <!-- header -->
+    <div class="mb-14 text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
+        Usage Examples
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+        Explora diferentes maneras de visualizar relaciones y arquitecturas
+        usando NodeGraph.
+      </p>
+    </div>
+
+    <!-- cards -->
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {usageItems.map((item) => (
+        <article
+          class="
+            group
+            relative
+            overflow-hidden
+            rounded-3xl
+            border border-neutral-200/80
+            bg-white/90
+            backdrop-blur-xl
+            shadow-[0_10px_40px_rgba(0,0,0,0.06)]
+            transition-all
+            duration-500
+            hover:-translate-y-2
+            hover:border-cyan-200
+            hover:shadow-[0_20px_80px_rgba(6,182,212,0.18)]
+          "
+        >
+          <!-- glow hover -->
+          <div
+            class="
+              absolute inset-0 opacity-0 transition-opacity duration-500
+              group-hover:opacity-100
+              bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.10),transparent_55%)]
+            "
+          />
+
+          <!-- graph area -->
+          <div
+            class="
+              relative
+              h-56
+              overflow-hidden
+              border-b border-neutral-100
+              bg-linear-to-br
+              from-slate-50
+              via-white
+              to-cyan-50
+            "
+          >
+            <!-- top blur -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_60%)]" />
+
+            <div class="relative z-10 h-full w-full">
+              <NodeGraph
+                nodes={item.data.graph[0].nodes}
+                links={item.data.graph[0].links}
+                viewGuide={item.data.graph[0].viewGuide ?? false}
+                colors={item.data.graph[0].colors}
+                width={item.data.graph[0].width ?? "100%"}
+                height={item.data.graph[0].height ?? "100%"}
+                repulsion={item.data.graph[0].repulsion}
+                linkDistance={item.data.graph[0].linkDistance}
+                className={item.data.graph[0].className}
+                linkColor={item.data.graph[0].linkColor}
+                linkWidth={item.data.graph[0].linkWidth}
+                linkHoverColor={item.data.graph[0].linkHoverColor}
+                linkHoverWidth={item.data.graph[0].linkHoverWidth}
+                nodeHoverColor={item.data.graph[0].nodeHoverColor}
+                nodeLabelColor={item.data.graph[0].nodeLabelColor}
+                nodeLabelHoverColor={item.data.graph[0].nodeLabelHoverColor}
+                nodeLabelFontSize={item.data.graph[0].nodeLabelFontSize}
+                nodeLabelShowOnHover={item.data.graph[0].nodeLabelShowOnHover}
+                nodeLabelMinDegree={item.data.graph[0].nodeLabelMinDegree}
+                nodeLabelMinScale={item.data.graph[0].nodeLabelMinScale}
+                client:only
+                transition:name="NodeGraphCard"
+              />
+            </div>
+
+            <!-- fade -->
+            <div class="absolute bottom-0 left-0 h-20 w-full bg-linear-to-t from-white to-transparent"></div>
+          </div>
+
+          <!-- content -->
+          <div class="relative flex flex-col px-6 py-3">
+            <div class="flex-1">
+              <h3
+                class="
+                  text-xl
+                  font-semibold
+                  tracking-tight
+                  text-neutral-900
+                  transition-colors
+                  duration-300
+                  group-hover:text-cyan-600
+                "
+                transition:name={item.data.id}
+              >
+                {item.data.title}
+              </h3>
+
+              <p
+                class="
+                  mt-3
+                  text-[15px]
+                  leading-7
+                  text-neutral-600
+                "
+              >
+                {item.data.description}
+              </p>
+            </div>
+
+            <!-- button -->
+            <div class="mt-6">
+              <a
+                href={`/usage/${item.data.id}`}
+                class="
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-xl
+                  text-sm
+                  font-medium
+                  text-transparent
+                  transition-all
+                  duration-300
+                  group-hover:text-cyan-600
+                "
+              >
+                <MoveRight className="h-4 w-4" client:load />
+                Learn More
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
 </section>
 

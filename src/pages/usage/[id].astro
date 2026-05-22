@@ -19,7 +19,9 @@ const { item } = Astro.props;
 <Layout title={`NodeGraph - Usage Example ${item.data.id}`}>
   <section class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-cyan-400/5 via-transparent to-transparent">
       <div class="max-w-4xl mx-auto">
-        <div class="w-full h-120 rounded-lg shadow-lg">
+         <h2 class="mt-8 text-3xl font-extrabold text-gray-900" transition:name={item.data.id}>{item.data.title}</h2>
+        <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
+        <div class="w-full h-120 rounded-lg shadow-lg mt-6 border border-gray-200 hover:shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 relative group">
           <NodeGraph
         nodes={item.data.graph[0].nodes}
         links={item.data.graph[0].links}
@@ -29,7 +31,7 @@ const { item } = Astro.props;
         height={item.data.graph[0].height ?? "100%"}
         repulsion={item.data.graph[0].repulsion}
         linkDistance={item.data.graph[0].linkDistance}
-        className={item.data.graph[0].className}
+        className="bg-white rounded-lg"
         linkColor={item.data.graph[0].linkColor}
         linkWidth={item.data.graph[0].linkWidth}
         linkHoverColor={item.data.graph[0].linkHoverColor}
@@ -42,10 +44,10 @@ const { item } = Astro.props;
         nodeLabelMinDegree={item.data.graph[0].nodeLabelMinDegree}
         nodeLabelMinScale={item.data.graph[0].nodeLabelMinScale}
         client:only
+        transition:name="NodeGraphCard"
       />
         </div>
-        <h2 class="mt-8 text-3xl font-extrabold text-gray-900" transition:name={item.data.id}>{item.data.title}</h2>
-        <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
+       
 
         
       </div>
