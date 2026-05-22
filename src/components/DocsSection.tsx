@@ -3,10 +3,49 @@ import { motion } from "framer-motion";
 import Card from "./Card";
 
 interface DocsSectionProps {
-  
+  viewGuide?: boolean;
+  colors?: string[];
+  width?: string | number;
+  height?: string | number;
+  repulsion?: number;
+  linkDistance?: number;
+  linkColor?: string;
+  className?: string;
+  linkWidth?: number;
+  linkHoverColor?: string;
+  linkHoverWidth?: number;
+  nodeHoverColor?: string;
+  nodeLabelColor?: string;
+  nodeLabelHoverColor?: string;
+  nodeLabelFontSize?: number;
+  nodeLabelShowOnHover?: boolean;
+  nodeLabelMinDegree?: number;
+  nodeLabelMinScale?: number;
 }
 
-const DocsSection: FC = () => {
+const DocsSection: FC<DocsSectionProps> = ({
+  viewGuide = false,
+  colors = [
+    "#3b82f6",
+  ],
+  width = "100%",
+  height = "100%",
+  repulsion = 120,
+  linkDistance = 55,
+  linkColor = "rgba(100,116,139,0.6)",
+  className = "bg-white",
+  linkWidth = 2,
+  linkHoverColor = "rgba(100,116,139,0.8)",
+  linkHoverWidth = 3,
+  nodeHoverColor = "rgba(59,134,246,0.8)",
+  nodeLabelColor = "rgba(100,116,139,0.8)",
+  nodeLabelHoverColor = "rgba(59,134,246,0.8)",
+  nodeLabelFontSize = 14,
+  nodeLabelShowOnHover = true,
+  nodeLabelMinDegree = 0,
+  nodeLabelMinScale = 1,
+
+}) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,45 +78,11 @@ const DocsSection: FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Installation */}
-          <motion.div variants={itemVariants}>
-             <Card className="p-8">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Installation</h3>
-              <div className="bg-gray-200 rounded-lg p-4 mb-4 border border-gray-400 overflow-x-auto">
-                <code className="text-sm text-blue-700 font-mono">
-                  npm install nodegraph
-                </code>
-              </div>
-               <p className="text-neutral-700 text-sm">
-                 Install NodeGraph from npm and start visualizing your data in seconds.
-               </p>
-            </Card>
-          </motion.div>
-
-          {/* Basic Usage */}
-           <motion.div variants={itemVariants}>
-            <Card className="p-8">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-4">Basic Usage</h3>
-              <div className="bg-gray-200 rounded-lg p-4 mb-4 border border-gray-400 overflow-x-auto">
-                <code className="text-xs text-green-700 font-mono block whitespace-pre">
-{`import NodeGraph from 'nodegraph';
-
-<NodeGraph
-  nodes={nodes}
-  links={links}
-/>`}
-                </code>
-              </div>
-              <p className="text-neutral-700 text-sm">
-                Super simple. Just pass your nodes and links. That's it!
-              </p>
-            </Card>
-          </motion.div>
-
+        
           {/* Props Reference */}
            <motion.div variants={itemVariants} className="lg:col-span-2">
-            <Card className="p-8">
               <h3 className="text-2xl font-bold text-neutral-900 mb-6">Common Props</h3>
+            <Card className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -91,34 +96,124 @@ const DocsSection: FC = () => {
                   <tbody>
                     {[
                       {
+                        prop: "nodes",
+                        type: "Node[]",
+                        default: "[]",
+                        desc: "Array of node objects with id, name, and group",
+                      },
+                      {
+                        prop: "links",
+                        type: "Array<[string, string]>",
+                        default: "[]",
+                        desc: "Array of node connections [source, target]",
+                      },
+                      {
+                        prop: "width",
+                        type: "string | number",
+                        default: typeof width === "string" ? `"${width}"` : String(width),
+                        desc: "Canvas width",
+                      },
+                      {
+                        prop: "height",
+                        type: "string | number",
+                        default: typeof height === "string" ? `"${height}"` : String(height),
+                        desc: "Canvas height",
+                      },
+                      {
                         prop: "repulsion",
                         type: "number",
-                        default: "120",
+                        default: String(repulsion),
                         desc: "Node repulsion strength",
                       },
                       {
                         prop: "linkDistance",
                         type: "number",
-                        default: "55",
+                        default: String(linkDistance),
                         desc: "Link length",
                       },
                       {
                         prop: "colors",
                         type: "string[]",
-                        default: "[...]",
+                        default: JSON.stringify(colors),
                         desc: "Node colors by group",
                       },
                       {
                         prop: "linkColor",
                         type: "string",
-                        default: "rgba(...)",
+                        default: `"${linkColor}"`,
                         desc: "Link color",
+                      },
+                      {
+                        prop: "linkWidth",
+                        type: "number",
+                        default: String(linkWidth),
+                        desc: "Link stroke width",
+                      },
+                      {
+                        prop: "linkHoverColor",
+                        type: "string",
+                        default: `"${linkHoverColor}"`,
+                        desc: "Link hover color",
+                      },
+                      {
+                        prop: "linkHoverWidth",
+                        type: "number",
+                        default: String(linkHoverWidth),
+                        desc: "Link width on hover",
                       },
                       {
                         prop: "nodeHoverColor",
                         type: "string",
-                        default: "#fff",
-                        desc: "Hover highlight color",
+                        default: `"${nodeHoverColor}"`,
+                        desc: "Node hover highlight color",
+                      },
+                      {
+                        prop: "nodeLabelColor",
+                        type: "string",
+                        default: `"${nodeLabelColor}"`,
+                        desc: "Node label color",
+                      },
+                      {
+                        prop: "nodeLabelHoverColor",
+                        type: "string",
+                        default: `"${nodeLabelHoverColor}"`,
+                        desc: "Node label hover color",
+                      },
+                      {
+                        prop: "nodeLabelFontSize",
+                        type: "number",
+                        default: String(nodeLabelFontSize),
+                        desc: "Node label font size",
+                      },
+                      {
+                        prop: "nodeLabelShowOnHover",
+                        type: "boolean",
+                        default: String(nodeLabelShowOnHover),
+                        desc: "Show labels only on hover",
+                      },
+                      {
+                        prop: "nodeLabelMinDegree",
+                        type: "number",
+                        default: String(nodeLabelMinDegree),
+                        desc: "Minimum connections to show label",
+                      },
+                      {
+                        prop: "nodeLabelMinScale",
+                        type: "number",
+                        default: String(nodeLabelMinScale),
+                        desc: "Minimum zoom scale to show labels",
+                      },
+                      {
+                        prop: "className",
+                        type: "string",
+                        default: `"${className}"`,
+                        desc: "CSS class for canvas container",
+                      },
+                      {
+                        prop: "viewGuide",
+                        type: "boolean",
+                        default: String(viewGuide),
+                        desc: "Show view guide overlay",
                       },
                     ].map((row, i) => (
                       <motion.tr
