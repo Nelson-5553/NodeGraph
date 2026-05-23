@@ -18,16 +18,33 @@ const { item } = Astro.props;
 
 <Layout title={`NodeGraph - Usage Example ${item.data.id}`}>
   <section class="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-cyan-400/5 via-transparent to-transparent">
-      <div class="max-w-4xl mx-auto">
-        <a href="/" class="inline-flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-800 transition-colors mb-4">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          Volver al inicio
-        </a>
-         <h2 class="mt-8 text-3xl font-extrabold text-gray-900" transition:name={item.data.id}>{item.data.title}</h2>
-        <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
-        <div class="w-full h-120 rounded-lg shadow-lg mt-6 border border-gray-300 hover:shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 relative group">
+      <div class="max-w-5xl mx-auto">
+        <!-- Header Section -->
+        <div class="mb-10">
+          <a href="/" class="inline-flex items-center px-4 py-2 text-sm font-medium text-cyan-700 bg-cyan-50 hover:bg-cyan-100 rounded-full transition-all duration-200 mb-6 border border-cyan-200 shadow-sm">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Back to gallery
+          </a>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight" transition:name={item.data.id}>
+            {item.data.title}
+          </h2>
+        </div>
+
+        <!-- Description Box -->
+        <div class="bg-white/60 backdrop-blur-md rounded-2xl p-6 md:p-8 mb-12 shadow-sm border border-gray-200/80 leading-relaxed text-gray-700 text-lg">
+          {item.data.description}
+        </div>
+
+        <div class="space-y-16">
+          <!-- Graph Interactive Display -->
+          <div class="space-y-4">
+            <h3 class="text-2xl font-bold text-gray-800 flex items-center gap-3">
+              <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+              Interactive Visualization
+            </h3>
+            <div class="w-full h-[600px] rounded-3xl shadow-xl shadow-cyan-900/5 mt-6 border border-gray-200 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative group overflow-hidden bg-white">
           <NodeGraph
         nodes={item.data.graph[0].nodes}
         links={item.data.graph[0].links}
@@ -52,22 +69,40 @@ const { item } = Astro.props;
         client:only
         transition:name="NodeGraphCard"
       />
-        </div>
-        
-        {item.data.code && item.data.code.map((c) => (
-          <div class="mt-8 rounded-lg overflow-hidden shadow-lg border border-gray-300">
-           
-            <div class="px-4 py-2 bg-white text-gray-800 text-xs font-mono font-bold uppercase">
-              {c.lang}
             </div>
-            <Code
-              class="p-4"
-              lang={c.lang as any}
-              code={c.code}
-              theme="github-dark"
-            />
           </div>
-        ))}
+
+          <!-- Code Display -->
+          {item.data.code && item.data.code.length > 0 && (
+            <div class="space-y-4">
+              <h3 class="text-2xl font-bold text-gray-800 flex items-center gap-3">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                Implementation Code
+              </h3>
+              <div class="grid gap-6">
+                {item.data.code.map((c) => (
+                  <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-[#0d1117] group">
+                    <div class="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-gray-800">
+                      <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                      </div>
+                      <span class="text-gray-400 text-xs font-mono font-bold tracking-wider">{c.lang.toUpperCase()}</span>
+                    </div>
+                    <div class="[&>pre]:!bg-transparent [&>pre]:!m-0 [&>pre]:!p-6 overflow-x-auto text-sm">
+                      <Code
+                        lang={c.lang as any}
+                        code={c.code}
+                        theme="github-dark"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </section>
     <DocsSection 

@@ -1,7 +1,7 @@
 {
   "id": "5",
   "title": "Advanced Styling",
-  "description": "Estilos avanzados - Personalización completa de colores, tamaños y efectos hover",
+  "description": "This example demonstrates how to apply advanced styling to the graph, allowing for comprehensive customization. It features configurations for custom colors per node group, static and dynamic link widths (on hover), as well as text color palette adjustments to create a rich visual experience tailored to your brand identity.",
   "graph": [
     {
       "nodes": [

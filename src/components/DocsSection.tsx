@@ -68,7 +68,7 @@ const DocsSection: FC<DocsSectionProps> = ({
 
   return (
      <section className="px-4 sm:px-6 lg:px-8 mb-12">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
 
 
         <motion.div

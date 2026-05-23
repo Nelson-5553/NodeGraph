@@ -1,7 +1,7 @@
 {
   "id": "8",
   "title": "Full Customization",
-  "description": "Personalización completa - Todas las opciones disponibles: controles, estilos, física y etiquetas",
+  "description": "The ultimate demonstration of the component's capabilities. This graph combines high visual style customization with fine-tuned physics configuration. It highlights advanced use of interactive labels, custom interaction colors (hover), and dynamic size adjustments, creating a complete and robust user experience.",
   "graph": [
     {
       "nodes": [

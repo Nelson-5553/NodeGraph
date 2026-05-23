@@ -1,7 +1,7 @@
 {
   "id": "6",
   "title": "Label Customization",
-  "description": "Personalización completa de etiquetas - Control de visibilidad, tamaño y colores de texto",
+  "description": "A detailed focus on node label rendering. It exposes how to control text visibility (always visible or only on hover), font size, and the minimum scale (nodeLabelMinScale) or connection degrees (nodeLabelMinDegree) required for a label to appear, optimizing readability in dense graphs.",
   "graph": [
     {
       "nodes": [

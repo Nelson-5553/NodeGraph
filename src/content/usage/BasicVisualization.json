@@ -1,7 +1,7 @@
 {
   "id": "3",
   "title": "Basic Visualization",
-  "description": "Visualización básica sin controles - Ideal para mostrar gráfos simples sin interactividad adicional",
+  "description": "A fundamental, minimalist visualization that removes the control interface (viewGuide=false). It is perfect for integrations where you only need to show data relationships cleanly and directly, making it ideal for dashboards or information cards where space is limited and user manipulation is not required.",
   "graph": [
     {
       "nodes": [

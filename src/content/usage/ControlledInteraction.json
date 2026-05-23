@@ -1,7 +1,7 @@
 {
   "id": "4",
   "title": "Controlled Interaction",
-  "description": "Con controles básicos visibles - Permite ajustar la repulsión y la fuerza de los enlaces",
+  "description": "An example that enables the interactive control panel (viewGuide=true). This feature grants the end user the ability to dynamically adjust physics engine parameters, such as the repulsion force between nodes and the distance of connection links, all in real-time to facilitate the exploration of complex networks.",
   "graph": [
     {
       "nodes": [

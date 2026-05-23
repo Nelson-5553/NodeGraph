@@ -124,7 +124,11 @@ const usageItems = await getCollection("usage");
                   text-[15px]
                   leading-7
                   text-neutral-600
+                  wrap-break-word
+                  overflow-hidden
+                  max-h-13
                 "
+                title={item.data.description}
               >
                 {item.data.description}
               </p>

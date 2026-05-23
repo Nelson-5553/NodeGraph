@@ -1,7 +1,7 @@
 {
   "id": "7",
   "title": "Physics Engine Control",
-  "description": "Control avanzado de física - Repulsión y distancia de enlaces ajustables para simulación realista",
+  "description": "Illustrates the behavior of the integrated physics engine. By modifying the initial 'repulsion' and 'linkDistance' values, a more natural and readable dispersion of nodes is achieved. It is ideal for highly interconnected graphs (like social networks or dependency maps) where fine-tuned physics help visually untangle clusters.",
   "graph": [
     {
       "nodes": [
