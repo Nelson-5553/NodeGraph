@@ -3,7 +3,7 @@ import Layout from "../../Layouts/Layout.astro";
 import NodeGraph from "../../components/NodeGraph";
 import DocsSection from "../../components/DocsSection";
 import { getCollection } from "astro:content";
-
+import { Code } from 'astro:components'
 export async function getStaticPaths() {
   const usageItems = await getCollection("usage");
 
@@ -19,6 +19,12 @@ const { item } = Astro.props;
 <Layout title={`NodeGraph - Usage Example ${item.data.id}`}>
   <section class="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-cyan-400/5 via-transparent to-transparent">
       <div class="max-w-4xl mx-auto">
+        <a href="/" class="inline-flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-800 transition-colors mb-4">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Volver al inicio
+        </a>
          <h2 class="mt-8 text-3xl font-extrabold text-gray-900" transition:name={item.data.id}>{item.data.title}</h2>
         <p class="mt-4 text-lg text-gray-600">{item.data.description}</p>
         <div class="w-full h-120 rounded-lg shadow-lg mt-6 border border-gray-300 hover:shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 relative group">
@@ -47,9 +53,21 @@ const { item } = Astro.props;
         transition:name="NodeGraphCard"
       />
         </div>
-       
-
         
+        {item.data.code && item.data.code.map((c) => (
+          <div class="mt-8 rounded-lg overflow-hidden shadow-lg border border-gray-300">
+           
+            <div class="px-4 py-2 bg-white text-gray-800 text-xs font-mono font-bold uppercase">
+              {c.lang}
+            </div>
+            <Code
+              class="p-4"
+              lang={c.lang as any}
+              code={c.code}
+              theme="github-dark"
+            />
+          </div>
+        ))}
       </div>
     </section>
     <DocsSection 

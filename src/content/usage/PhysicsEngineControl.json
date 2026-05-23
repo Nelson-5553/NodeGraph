@@ -47,5 +47,11 @@
       "nodeLabelMinDegree": 3,
       "nodeLabelMinScale": 0.45
     }
+  ],
+  "code": [
+    {
+      "lang": "jsx",
+      "code": "import React from 'react';\nimport NodeGraph from './NodeGraph';\n\nconst nodes = [\n  { id: '1', name: 'Node A', group: 0 },\n  { id: '2', name: 'Node B', group: 1 },\n  { id: '3', name: 'Node C', group: 2 },\n  { id: '4', name: 'Node D', group: 0 },\n  { id: '5', name: 'Node E', group: 1 },\n  { id: '6', name: 'Node F', group: 2 },\n  { id: '7', name: 'Node G', group: 0 },\n  { id: '8', name: 'Node H', group: 1 }\n];\n\nconst links = [\n  ['1', '2'], ['2', '3'], ['3', '4'], ['4', '5'],\n  ['5', '6'], ['6', '7'], ['7', '8'], ['8', '1'],\n  ['1', '4'], ['2', '5'], ['3', '6'], ['4', '7']\n];\n\nexport default function PhysicsEngineControlExample() {\n  return (\n    <NodeGraph\n      nodes={nodes}\n      links={links}\n      viewGuide={false}\n      colors={['#7c3aed', '#059669', '#2563eb', '#d97706']}\n      width=\"100%\"\n      height=\"100%\"\n      repulsion={300}\n      linkDistance={100}\n      className=\"bg-white\"\n      linkColor=\"rgba(124,58,237,0.5)\"\n      linkWidth={1.2}\n      linkHoverColor=\"#7c3aed\"\n      linkHoverWidth={2}\n      nodeHoverColor=\"#7c3aed\"\n      nodeLabelColor=\"#312e81\"\n      nodeLabelHoverColor=\"#7c3aed\"\n      nodeLabelFontSize={10}\n      nodeLabelShowOnHover={false}\n      nodeLabelMinDegree={3}\n      nodeLabelMinScale={0.45}\n    />\n  );\n}"
+    }
   ]
 }

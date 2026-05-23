@@ -40,6 +40,10 @@ const usage = defineCollection({
       nodeLabelMinDegree: z.number().optional(),
       nodeLabelMinScale: z.number().optional(),
     })),
+    code: z.array(z.object({
+      lang: z.string(),
+      code: z.string()
+    })).optional()
   }),
 });
 

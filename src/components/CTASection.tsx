@@ -28,7 +28,7 @@ const CTASection = () => {
         >
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="block text-neutral-900 mb-3">Ready to Visualize?</span>
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
               Start Building Today
             </span>
           </h2>
