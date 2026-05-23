@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { ClientRouter } from "astro:transitions";
 import Footer from '../components/Footer';
+import Navbar from "../components/Navbar";
 
 interface Props {
     title?: string;
@@ -12,6 +13,7 @@ const {
     title = "NodeGraph - Interactive Graph Visualization",
     description = "Interactive graph visualization component for modern web applications. Render thousands of nodes with physics-based layouts."
 } = Astro.props;
+
 ---
 
 <!DOCTYPE html>
@@ -41,6 +43,7 @@ const {
 <ClientRouter />
 </head>
 <body>
+    <Navbar client:only />
     <slot />
     <Footer  client:only/>
 </body>

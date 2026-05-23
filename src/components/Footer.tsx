@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
+import NodeGraphLogo from "./NodeGraphLogo";
 
 const Footer: FC = () => {
   const footerLinks = [
@@ -28,7 +29,9 @@ const Footer: FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold text-neutral-900 mb-2">NodeGraph</h3>
+            <div className="mb-2">
+              <NodeGraphLogo animated={false} className="text-3xl" />
+            </div>
             <p className="text-neutral-600 text-sm">
               Interactive graph visualization for the modern web.
             </p>

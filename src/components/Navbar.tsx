@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { GitFork, Star } from "lucide-react";
+import NodeGraphLogo from "./NodeGraphLogo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +29,8 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 rounded-lg flex justify-center items-center p-1 "><GitFork className="w-8 h-8 text-neutral-900" /></div>
-            NodeGraph
+            <div className="w-8 h-8 rounded-lg flex justify-center items-center p-1 "></div>
+            <NodeGraphLogo animated={false} className="text-2xl" />
           </motion.a>
 
           {/* Desktop Navigation */}

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
 
+import NodeGraphLogo from "./NodeGraphLogo";
+
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08 } },
@@ -18,7 +20,7 @@ const letterVariant = {
   },
 };
 
-const LOGO_LETTERS = ["N", null, "d", "e", "G", "r", "a", "p", "h"];
+// Logo removed because we extract it
 
 export default function NodeGraphHero() {
   return (
@@ -76,56 +78,10 @@ export default function NodeGraphHero() {
       </div>
 
       {/* Logo */}
-      <motion.div
-        className="mb-1 flex items-center"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {LOGO_LETTERS.map((letter, i) =>
-          letter === null ? (
-            // Orb replacing the "o"
-            <motion.span
-              key={i}
-              variants={letterVariant}
-              className="mx-1 flex items-center justify-center"
-              style={{ width: "clamp(2.4rem, 6vw, 3.6rem)", height: "clamp(2.4rem, 6vw, 3.6rem)" }}
-            >
-              <motion.span
-                className="block h-full w-full rounded-full"
-                style={{
-                  background: "radial-gradient(circle at 35% 35%, #67e8f9, #06b6d4 50%, #2563eb)",
-                  boxShadow: "0 0 18px rgba(6,182,212,0.4)",
-                  position: "relative",
-                }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                {/* Orb shine */}
-                <span
-                  className="absolute"
-                  style={{
-                    top: "18%", left: "22%",
-                    width: "28%", height: "20%",
-                    background: "rgba(255,255,255,0.55)",
-                    borderRadius: "50%",
-                    transform: "rotate(-20deg)",
-                  }}
-                />
-              </motion.span>
-            </motion.span>
-          ) : (
-            <motion.span
-              key={i}
-              variants={letterVariant}
-              className="cherry-bomb-one-regular text-neutral-900"
-              style={{ fontSize: "clamp(2.8rem, 8vw, 5rem)", lineHeight: 1 }}
-            >
-              {letter}
-            </motion.span>
-          )
-        )}
-      </motion.div>
+      <NodeGraphLogo 
+        animated={true} 
+        className="mb-1 text-[clamp(2.8rem,8vw,5rem)]" 
+      />
 
       {/* "Visualize Everything" tagline */}
       <div className="duration-800 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs">
