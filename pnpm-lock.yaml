@@ -32,6 +32,9 @@ importers:
       lucide-react:
         specifier: ^1.16.0
         version: 1.16.0(react@19.2.6)
+      nodegraph-react:
+        specifier: file:./package/nodegraph
+        version: file:package/nodegraph(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react:
         specifier: ^19.2.6
         version: 19.2.6
@@ -1585,6 +1588,12 @@ packages:
 
   node-releases@2.0.44:
     resolution: {integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==}
+
+  nodegraph-react@file:package/nodegraph:
+    resolution: {directory: package/nodegraph, type: directory}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -3703,6 +3712,12 @@ snapshots:
   node-mock-http@1.0.4: {}
 
   node-releases@2.0.44: {}
+
+  nodegraph-react@file:package/nodegraph(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+    dependencies:
+      d3: 7.9.0
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
 
   normalize-path@3.0.0: {}
 

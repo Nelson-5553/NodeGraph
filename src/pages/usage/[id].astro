@@ -1,6 +1,6 @@
 ---
 import Layout from "../../Layouts/Layout.astro";
-import NodeGraph from "../../components/NodeGraph";
+import { NodeGraph } from "nodegraph-react";
 import DocsSection from "../../components/DocsSection";
 import { getCollection } from "astro:content";
 import { Code } from 'astro:components'
@@ -44,8 +44,9 @@ const { item } = Astro.props;
               <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
               Interactive Visualization
             </h3>
-            <div class="w-full h-[600px] rounded-3xl shadow-xl shadow-cyan-900/5 mt-6 border border-gray-200 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative group overflow-hidden bg-white">
+            <div class="w-full h-150 rounded-3xl shadow-xl shadow-cyan-900/5 mt-6 border border-gray-200 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative group overflow-hidden bg-white">
           <NodeGraph
+          client:only = "react"
         nodes={item.data.graph[0].nodes}
         links={item.data.graph[0].links}
         viewGuide={item.data.graph[0].viewGuide ?? false}
@@ -66,8 +67,6 @@ const { item } = Astro.props;
         nodeLabelShowOnHover={item.data.graph[0].nodeLabelShowOnHover}
         nodeLabelMinDegree={item.data.graph[0].nodeLabelMinDegree}
         nodeLabelMinScale={item.data.graph[0].nodeLabelMinScale}
-        client:only
-        transition:name="NodeGraphCard"
       />
             </div>
           </div>
@@ -90,7 +89,7 @@ const { item } = Astro.props;
                       </div>
                       <span class="text-gray-400 text-xs font-mono font-bold tracking-wider">{c.lang.toUpperCase()}</span>
                     </div>
-                    <div class="[&>pre]:!bg-transparent [&>pre]:!m-0 [&>pre]:!p-6 overflow-x-auto text-sm">
+                    <div class="[&>pre]:bg-transparent [&>pre]:m-0 [&>pre]:p-6 overflow-x-auto text-sm">
                       <Code
                         lang={c.lang as any}
                         code={c.code}

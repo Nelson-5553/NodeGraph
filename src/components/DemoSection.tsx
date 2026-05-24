@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useState } from "react";
+import { NodeGraph } from "nodegraph-react";
 import { motion } from "framer-motion";
-import NodeGraph from "./NodeGraph";
 import Card from "./Card";
 
 // Sample graph data for demo
