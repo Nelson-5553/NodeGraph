@@ -6,6 +6,11 @@ export function NodeGraphControls({
   setRepulsionVal,
   linkStrengthVal,
   setLinkStrengthVal,
+}: {
+  repulsionVal: number;
+  setRepulsionVal: (value: number) => void;
+  linkStrengthVal: number;
+  setLinkStrengthVal: (value: number) => void;
 }) {
   return (
     <>

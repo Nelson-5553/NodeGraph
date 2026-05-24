@@ -41,7 +41,7 @@ export default function NodeGraphLogo({ animated = false, className = "" }: Node
           <motion.span
             key={i}
             variants={itemVariants}
-            className="mx-[0.05em] flex items-center justify-center -translate-y-[0.05em]"
+            className="mx-[0.05em] flex items-center justify-center translate-y-[-0.05em]"
             style={{ width: "0.7em", height: "0.7em" }}
           >
             <motion.span
