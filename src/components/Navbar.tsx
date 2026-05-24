@@ -1,21 +1,11 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { GitFork, Star } from "lucide-react";
+import { Terminal, Star } from "lucide-react";
 import NodeGraphLogo from "./NodeGraphLogo";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navLinks = [
-    { label: "Features", href: "#" },
-    { label: "Demo", href: "#demo" },
-    { label: "Examples", href: "#examples" },
-    { label: "Docs", href: "#docs" },
-  ];
-
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200"
+      className="top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -33,68 +23,85 @@ const Navbar = () => {
             <NodeGraphLogo animated={false} className="text-2xl" />
           </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="text-neutral-600 hover:text-neutral-900 transition-colors text-sm"
-                whileHover={{ color: "#000" }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </div>
+          {/* CTA Buttons */}
+          <div className="hidden sm:flex items-center gap-2">
+            <motion.a
+              href="https://github.com/Nelson-5553/NodeGraph"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View repository on GitHub"
+              className="
+    group
+    inline-flex
+    items-center
+    gap-2
+    rounded-full
+    border
+    border-neutral-200
+    bg-white/70
+    px-3
+    py-1.5
+    text-sm
+    text-neutral-700
+    backdrop-blur-sm
+    transition-all
+    duration-200
+    hover:border-neutral-300
+    hover:bg-white
+  "
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Star
+                className="
+      h-4
+      w-4
+      text-neutral-500
+      transition-colors
+      duration-200
+      group-hover:text-yellow-500
+      group-hover:fill-yellow-500
+      group-hover:animate-pulse
 
-          {/* CTA Button */}
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-neutral-900 text-sm font-semibold"
-            whileTap={{ scale: 0.95 }}
-          >
-            <Star className="w-4 h-4" />
-            0k
-          </motion.a>
-
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden text-neutral-900"
-            onClick={() => setIsOpen(!isOpen)}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+    "
               />
-            </svg>
-          </motion.button>
-        </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.div
-            className="md:hidden pb-4 space-y-2"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block px-4 py-2 text-neutral-600 hover:text-neutral-900 hover:bg-gray-100 rounded-lg transition-colors text-sm"
+              <span
+                className="
+      rounded-full
+      bg-neutral-100
+      px-1.5
+      py-0.5
+      text-xs
+      text-neutral-500
+    "
               >
-                {link.label}
-              </a>
-            ))}
-          </motion.div>
-        )}
+                0
+              </span>
+            </motion.a>
+            <span className="text-neutral-500 text-sm border-l border-neutral-500 h-4 flex items-center scroll-pl-0.5"></span>
+
+            <motion.a
+              href="https://github.com/Nelson-5553#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-800 text-neutral-200 rounded-2xl text-sm font-semibold"
+              whileTap={{ scale: 0.95 }}
+            >
+              GitHub
+            </motion.a>
+
+            <motion.a
+              href="https://www.linkedin.com/in/nelson-jimenez-10429a337/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-800 text-neutral-200 rounded-2xl text-sm font-semibold"
+              whileTap={{ scale: 0.95 }}
+            >
+              LinkedIn
+            </motion.a>
+          </div>
+        </div>
       </div>
     </motion.nav>
   );
