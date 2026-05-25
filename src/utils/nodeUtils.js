@@ -2,6 +2,7 @@
 
 // Returns node degree (connection count)
 export function getDegree(id, links) {
+  if (!links || links.length === 0) return 0;
   return links.filter(l => l.source?.id === id || l.target?.id === id).length;
 }
 

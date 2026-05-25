@@ -5,6 +5,8 @@ import { getDegree, nodeRadius } from './nodeUtils';
 
 // Draws all links on canvas
 function drawLinks(ctx, links, viewState, dpr, linkStyles = {}) {
+  if (!links || links.length === 0) return;
+  
   const { scale, offsetX, offsetY, hoveredNode } = viewState;
   const {
     linkColor = "rgba(255,255,255,0.07)",

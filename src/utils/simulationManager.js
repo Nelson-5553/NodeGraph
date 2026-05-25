@@ -12,12 +12,6 @@ export function createSimulation(
   onTick
 ) {
   const simulation = d3.forceSimulation(nodes)
-    .force("link", 
-      d3.forceLink(links)
-        .id(d => d.id)
-        .distance(linkDistance)
-        .strength(linkStrength / 10)
-    )
     .force("charge", 
       d3.forceManyBody().strength(-repulsion)
     )
@@ -29,6 +23,16 @@ export function createSimulation(
     )
     .alphaDecay(0.015)
     .on("tick", onTick);
+  
+  // Only apply link force if links exist
+  if (links && links.length > 0) {
+    simulation.force("link", 
+      d3.forceLink(links)
+        .id(d => d.id)
+        .distance(linkDistance)
+        .strength(linkStrength / 10)
+    );
+  }
   
   return simulation;
 }
