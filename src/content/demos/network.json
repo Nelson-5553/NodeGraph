@@ -16,5 +16,5 @@
     ["n2", "n5"],
     ["n3", "n5"]
   ],
-  "code": "import { NodeGraph } from \"nodegraph-react\";\n\nconst networkNodes = [\n  { id: \"n1\", name: \"Server 1\", group: 0 },\n  { id: \"n2\", name: \"Server 2\", group: 0 },\n  { id: \"n3\", name: \"Server 3\", group: 0 },\n  { id: \"n4\", name: \"Load Balancer\", group: 1 },\n  { id: \"n5\", name: \"Storage\", group: 2 }\n];\n\nconst networkLinks = [\n  [\"n4\", \"n1\"], [\"n4\", \"n2\"], [\"n4\", \"n3\"],\n  [\"n1\", \"n5\"], [\"n2\", \"n5\"], [\"n3\", \"n5\"]\n];\n\nexport function NetworkDiagram() {\n  return (\n    <NodeGraph nodes={networkNodes} links={networkLinks} />\n  );\n}"
+  "code": "import { NodeGraph } from \"@nelson-5553/nodegraph-react\";\n\nconst networkNodes = [\n  { id: \"n1\", name: \"Server 1\", group: 0 },\n  { id: \"n2\", name: \"Server 2\", group: 0 },\n  { id: \"n3\", name: \"Server 3\", group: 0 },\n  { id: \"n4\", name: \"Load Balancer\", group: 1 },\n  { id: \"n5\", name: \"Storage\", group: 2 }\n];\n\nconst networkLinks = [\n  [\"n4\", \"n1\"], [\"n4\", \"n2\"], [\"n4\", \"n3\"],\n  [\"n1\", \"n5\"], [\"n2\", \"n5\"], [\"n3\", \"n5\"]\n];\n\nexport function NetworkDiagram() {\n  return (\n    <NodeGraph nodes={networkNodes} links={networkLinks} />\n  );\n}"
 }

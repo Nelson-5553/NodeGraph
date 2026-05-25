@@ -18,5 +18,5 @@
     ["n2", "n6"],
     ["n4", "n6"]
   ],
-  "code": "import { NodeGraph } from \"nodegraph-react\";\n\nconst dependencyNodes = [\n  { id: \"n1\", name: \"App\", group: 0 },\n  { id: \"n2\", name: \"React\", group: 1 },\n  { id: \"n3\", name: \"Framer Motion\", group: 1 },\n  { id: \"n4\", name: \"TypeScript\", group: 1 }\n];\n\nconst dependencyLinks = [\n  [\"n1\", \"n2\"],\n  [\"n1\", \"n3\"],\n  [\"n1\", \"n4\"]\n];\n\nexport function DependencyGraph() {\n  return (\n    <NodeGraph nodes={dependencyNodes} links={dependencyLinks} />\n  );\n}"
+  "code": "import { NodeGraph } from \"@nelson-5553/nodegraph-react\";\n\nconst dependencyNodes = [\n  { id: \"n1\", name: \"App\", group: 0 },\n  { id: \"n2\", name: \"React\", group: 1 },\n  { id: \"n3\", name: \"Framer Motion\", group: 1 },\n  { id: \"n4\", name: \"TypeScript\", group: 1 }\n];\n\nconst dependencyLinks = [\n  [\"n1\", \"n2\"],\n  [\"n1\", \"n3\"],\n  [\"n1\", \"n4\"]\n];\n\nexport function DependencyGraph() {\n  return (\n    <NodeGraph nodes={dependencyNodes} links={dependencyLinks} />\n  );\n}"
 }
