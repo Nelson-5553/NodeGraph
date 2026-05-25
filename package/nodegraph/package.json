@@ -12,6 +12,7 @@
     "dev": "rollup -c --watch"
   },
   "dependencies": {
+    "@nelson-5553/nodegraph-react": "^1.0.0",
     "d3": "^7.0.0"
   },
   "peerDependencies": {
