@@ -62,6 +62,13 @@ const item = {
 
 const UsageCards = ({ items }: UsageCardsProps) => {
   return (
+    <>
+    <motion.div variants={container} initial="hidden" animate="show" className="mb-14 text-center">
+      <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+        Explore different ways to visualize relationships and architectures
+        using NodeGraph.
+      </p>
+    </motion.div>
     <motion.div
       className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
       variants={container}
@@ -204,6 +211,7 @@ const UsageCards = ({ items }: UsageCardsProps) => {
         </motion.article>
       ))}
     </motion.div>
+    </>
   );
 };
 

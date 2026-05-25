@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
+import { Layers } from "lucide-react";
 import Card from "./Card";
 
 interface DocsSectionProps {
@@ -81,7 +82,10 @@ const DocsSection: FC<DocsSectionProps> = ({
         
           {/* Props Reference */}
            <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">Common Props</h3>
+              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                <Layers className="inline-block w-6 h-6 mr-2 text-cyan-600" />
+                Common Props
+              </h3>
             <Card className="p-8">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">

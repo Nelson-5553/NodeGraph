@@ -87,7 +87,7 @@ const Navbar = () => {
               href="https://github.com/Nelson-5553#"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-800 text-neutral-200 rounded-2xl text-sm font-semibold"
+              className="inline-flex w-fit cursor-pointer items-center gap-2 rounded-2xl bg-gray-200 px-4 py-2 text-sm font-semibold text-neutral-800 transition-all duration-200 hover:bg-neutral-800 hover:text-white"
               whileTap={{ scale: 0.95 }}
             >
               GitHub
@@ -97,7 +97,7 @@ const Navbar = () => {
               href="https://www.linkedin.com/in/nelson-jimenez-10429a337/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-800 text-neutral-200 rounded-2xl text-sm font-semibold"
+              className="inline-flex w-fit cursor-pointer items-center gap-2 rounded-2xl bg-gray-200 px-4 py-2 text-sm font-semibold text-neutral-800 transition-all duration-200 hover:bg-blue-800 hover:text-white"
               whileTap={{ scale: 0.95 }}
             >
               LinkedIn

@@ -103,12 +103,12 @@ export default function NodeGraphHero() {
       >
         <div className="bg-gray-200 rounded-md p-2 overflow-x-auto flex items-center gap-3">
           <code className="text-xl text-neutral-700 font-mono flex items-center">
-            <Terminal className="inline-block mr-2" />npm install nodegraph-react
+            <Terminal className="inline-block mr-2" />npm i @nelson-5553/nodegraph-react
           </code>
           {/* copy button using hook */}
           <button
             type="button"
-            onClick={() => { void copy("npm install nodegraph-react") }}
+            onClick={() => { void copy("npm install @nelson-5553/nodegraph-react") }}
             className="ml-2 rounded-md bg-gray-500 px-2 py-2 text-sm font-medium text-white cursor-pointer hover:bg-gray-600 transition-colors duration-200"
           >
             {copied ? <Check className="inline-block w-6 h-6" /> : <Copy className="inline-block w-6 h-6" />}
