@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import Button from "./Button";
+import useGitStars from "../hooks/useGitStars";
 
 const CTASection = () => {
+  const { stars, loading } = useGitStars();
   return (
-     <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent relative overflow-hidden">
+     <section className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent via-cyan-400/10 to-transparent relative overflow-hidden">
       {/* Background Elements */}
        <div className="absolute inset-0 overflow-hidden">
          <motion.div
@@ -39,27 +41,6 @@ const CTASection = () => {
             documentation and examples.
           </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Button size="lg" variant="primary" href="#demo">
-              <span>🚀</span>
-              <span>Get Started Now</span>
-            </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              href="https://github.com"
-              target="_blank"
-            >
-              <span>⭐</span>
-              <span>Star on GitHub</span>
-            </Button>
-          </motion.div>
 
            {/* Social Proof */}
            <motion.div
@@ -70,12 +51,11 @@ const CTASection = () => {
              transition={{ duration: 0.6, delay: 0.4 }}
            >
              {[
-               { count: "500+", label: "GitHub Stars" },
-               { count: "50K+", label: "Weekly Downloads" },
-               { count: "100+", label: "Happy Developers" },
+               { count: loading ? "..." : stars ? (stars > 999 ? (stars / 1000).toFixed(1) + "k" : stars) : "0", label: "GitHub Stars" },
+               { count: "50K+", label: "Weekly Downloads" },  
              ].map((stat) => (
                <div key={stat.label} className="text-center">
-                 <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                 <div className="text-2xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                    {stat.count}
                  </div>
                  <div className="text-sm text-neutral-600 mt-1">{stat.label}</div>
