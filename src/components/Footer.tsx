@@ -4,22 +4,19 @@ import NodeGraphLogo from "./NodeGraphLogo";
 
 const Footer: FC = () => {
   const footerLinks = [
-    {
-      title: "Product",
-      links: ["Features", "Examples", "Pricing"],
-    },
-    {
+      {
       title: "Docs",
-      links: ["Guide", "API Reference", "Examples"],
+      links: ["Examples"],
     },
     {
       title: "Follow",
-      links: ["GitHub", "Twitter", "Discord"],
+      links: ["GitHub", "Discord"],
     },
   ];
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-gray-300 bg-gradient-to-b from-transparent to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="border-t border-gray-300 bg-linear-to-b from-transparent to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
@@ -75,21 +72,9 @@ const Footer: FC = () => {
          >
            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
              <p className="text-neutral-600 text-sm">
-              © 2024 NodeGraph. All rights reserved.
+              © {currentYear} NodeGraph. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
-              {["Privacy", "Terms", "Contact"].map((item) => (
-                <motion.a
-                  key={item}
-                  href="#"
-                  className="text-neutral-600 hover:text-neutral-900 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </div>
+            
           </div>
         </motion.div>
       </div>

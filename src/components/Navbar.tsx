@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import { Terminal, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import NodeGraphLogo from "./NodeGraphLogo";
+import useGitStars from "../hooks/useGitStars";
 
 const Navbar = () => {
+  const { stars, loading } = useGitStars();
   return (
     <motion.nav
       className="top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md"
@@ -76,7 +78,7 @@ const Navbar = () => {
       text-neutral-500
     "
               >
-                0
+                {loading ? "..." : stars ? (stars > 999 ? (stars / 1000).toFixed(1) + "k" : stars) : "0"}
               </span>
             </motion.a>
             <span className="text-neutral-500 text-sm border-l border-neutral-500 h-4 flex items-center scroll-pl-0.5"></span>
