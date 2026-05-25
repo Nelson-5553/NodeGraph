@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { NodeGraph } from "nodegraph-react";
+import { NodeGraph } from "@nelson-5553/nodegraph-react";
 import { motion } from "framer-motion";
 import { Code } from "lucide-react";
 import Card from "./Card";

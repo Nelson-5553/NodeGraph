@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
-import NodeGraph from "./NodeGraph";
+import { NodeGraph } from "@nelson-5553/nodegraph-react";
 
 interface UsageItem {
   id: string;
