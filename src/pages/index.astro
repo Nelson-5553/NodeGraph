@@ -4,6 +4,21 @@ import HeroSection from "../components/HeroSection";
 import DemoSection from "../components/DemoSection";
 import CTASection from "../components/CTASection";
 import UsageSection from "../components/UsageSection.astro";
+import { getCollection } from "astro:content";
+
+const demoItems = await getCollection("demos");
+const demos = demoItems
+  .sort((a, b) => {
+    const order = { architecture: 0, network: 1, dependencies: 2 };
+    return (order[a.data.id as keyof typeof order] ?? 999) - (order[b.data.id as keyof typeof order] ?? 999);
+  })
+  .map((item) => ({
+    id: item.data.id,
+    label: item.data.label,
+    nodes: item.data.nodes,
+    links: item.data.links as [string, string][],
+    code: item.data.code,
+  }));
 ---
 
 <Layout title="NodeGraph - Interactive Graph Visualization Component">
@@ -14,7 +29,7 @@ import UsageSection from "../components/UsageSection.astro";
   <HeroSection client:only />
 
   <!-- Demo Section -->
-  <DemoSection client:only />
+  <DemoSection client:only demos={demos} />
 
   <!-- Usage Section -->
   <UsageSection />

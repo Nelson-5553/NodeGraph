@@ -47,5 +47,20 @@ const usage = defineCollection({
   }),
 });
 
+const demos = defineCollection({
+  loader: glob({ base: './src/content/demos', pattern: '**/*.json' }),
+  schema: z.object({
+    id: z.string(),
+    label: z.string(),
+    nodes: z.array(z.object({
+      id: z.string(),
+      name: z.string(),
+      group: z.number(),
+    })),
+    links: z.array(z.array(z.string())),
+    code: z.string(),
+  }),
+});
+
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { usage };
+export const collections = { usage, demos };

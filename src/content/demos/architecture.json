@@ -1,0 +1,31 @@
+{
+  "id": "architecture",
+  "label": "Architecture",
+  "nodes": [
+    { "id": "n1", "name": "API Gateway", "group": 0 },
+    { "id": "n2", "name": "Auth Service", "group": 1 },
+    { "id": "n3", "name": "User Service", "group": 1 },
+    { "id": "n4", "name": "Database", "group": 2 },
+    { "id": "n5", "name": "Cache", "group": 2 },
+    { "id": "n6", "name": "Queue", "group": 2 },
+    { "id": "n7", "name": "Analytics", "group": 3 },
+    { "id": "n8", "name": "Logging", "group": 3 },
+    { "id": "n9", "name": "Monitoring", "group": 3 },
+    { "id": "n10", "name": "WebSocket", "group": 1 }
+  ],
+  "links": [
+    ["n1", "n2"],
+    ["n1", "n3"],
+    ["n1", "n10"],
+    ["n2", "n4"],
+    ["n3", "n4"],
+    ["n3", "n5"],
+    ["n1", "n6"],
+    ["n4", "n6"],
+    ["n1", "n7"],
+    ["n3", "n8"],
+    ["n2", "n9"],
+    ["n10", "n5"]
+  ],
+  "code": "import { NodeGraph } from \"nodegraph-react\";\n\nconst nodes = [\n  { id: \"n1\", name: \"API Gateway\", group: 0 },\n  { id: \"n2\", name: \"Auth Service\", group: 1 },\n  { id: \"n3\", name: \"User Service\", group: 1 },\n  { id: \"n4\", name: \"Database\", group: 2 },\n  // ... more nodes\n];\n\nconst links = [\n  [\"n1\", \"n2\"],\n  [\"n1\", \"n3\"],\n  // ... more connections\n];\n\nexport function Architecture() {\n  return (\n    <NodeGraph\n      nodes={nodes}\n      links={links}\n      colors={[\"#00F5FF\", \"#00FF9D\", \"#8B5CF6\", \"#FF00E5\"]}\n    />\n  );\n}"
+}
