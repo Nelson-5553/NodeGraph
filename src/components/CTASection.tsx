@@ -52,7 +52,6 @@ const CTASection = () => {
            >
              {[
                { count: loading ? "..." : stars ? (stars > 999 ? (stars / 1000).toFixed(1) + "k" : stars) : "0", label: "GitHub Stars" },
-               { count: "50K+", label: "Weekly Downloads" },  
              ].map((stat) => (
                <div key={stat.label} className="text-center">
                  <div className="text-2xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">

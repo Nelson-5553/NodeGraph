@@ -1,28 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal } from "lucide-react";
+import { Terminal, Copy, Check  } from "lucide-react";
+import useCopy from "../hooks/useCopy";
 
 import NodeGraphLogo from "./NodeGraphLogo";
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const letterVariant = {
-  hidden: { opacity: 0, y: 20, scale: 0.85 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring" as const, stiffness: 300, damping: 18},
-  },
-};
 
 // Logo removed because we extract it
 
 export default function NodeGraphHero() {
+  const { copy, copied } = useCopy();
+
   return (
     <section className="relative flex min-h-120 flex-col items-center justify-center overflow-hidden bg-white px-6 py-20">
 
@@ -113,11 +101,19 @@ export default function NodeGraphHero() {
       <div
         className="mt-8 flex gap-3 duration-1200 ease-in-out will-change-transform starting:translate-y-8 starting:opacity-0 starting:blur-xs"
       >
-        <div className="bg-gray-200 rounded-md p-2 overflow-x-auto ">
-                <code className="text-xl text-neutral-700 font-mono">
-                  <Terminal className="inline-block mr-2" />npm install nodegraph
-                </code>
-              </div>
+        <div className="bg-gray-200 rounded-md p-2 overflow-x-auto flex items-center gap-3">
+          <code className="text-xl text-neutral-700 font-mono flex items-center">
+            <Terminal className="inline-block mr-2" />npm install nodegraph-react
+          </code>
+          {/* copy button using hook */}
+          <button
+            type="button"
+            onClick={() => { void copy("npm install nodegraph-react") }}
+            className="ml-2 rounded-md bg-gray-500 px-2 py-2 text-sm font-medium text-white cursor-pointer hover:bg-gray-600 transition-colors duration-200"
+          >
+            {copied ? <Check className="inline-block w-6 h-6" /> : <Copy className="inline-block w-6 h-6" />}
+          </button>
+        </div>
       </div>
     </section>
   );

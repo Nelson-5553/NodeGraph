@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Copy, Check } from "lucide-react";
 import type { FC } from "react";
+import { useCopy } from "../hooks/useCopy";
 
 interface CodeModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface CodeModalProps {
 }
 
 const CodeModal: FC<CodeModalProps> = ({ isOpen, onClose, code, title = "Code" }) => {
+  const { copied, copy } = useCopy();
   return (
     <AnimatePresence>
       {isOpen && (
@@ -67,12 +69,20 @@ const CodeModal: FC<CodeModalProps> = ({ isOpen, onClose, code, title = "Code" }
               {/* Footer with Copy Button */}
               <div className="px-6 py-4 bg-[#161b22] border-t border-gray-800 flex justify-end gap-3">
                 <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(code);
-                  }}
-                  className="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg text-sm font-semibold transition-colors duration-200"
+                  onClick={() => void copy(code)}
+                  className="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center gap-2"
                 >
-                  Copy Code
+                  {copied ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" />
+                      Copy Code
+                    </>
+                  )}
                 </button>
                 <button
                   onClick={onClose}

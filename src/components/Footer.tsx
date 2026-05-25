@@ -3,16 +3,6 @@ import { motion } from "framer-motion";
 import NodeGraphLogo from "./NodeGraphLogo";
 
 const Footer: FC = () => {
-  const footerLinks = [
-      {
-      title: "Docs",
-      links: ["Examples"],
-    },
-    {
-      title: "Follow",
-      links: ["GitHub", "Discord"],
-    },
-  ];
   const currentYear = new Date().getFullYear();
 
   return (
@@ -33,33 +23,6 @@ const Footer: FC = () => {
               Interactive graph visualization for the modern web.
             </p>
           </motion.div>
-
-          {/* Footer Sections */}
-          {footerLinks.map((section, idx) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-            >
-              <h4 className="text-neutral-900 font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-2 text-sm">
-                {section.links.map((link) => (
-                  <li key={link}>
-                    <motion.a
-                      href="#"
-                      className="text-neutral-600 hover:text-neutral-900 transition-colors"
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {link}
-                    </motion.a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
         </div>
 
         {/* Divider */}
